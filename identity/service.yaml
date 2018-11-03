@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: identity
+  lables:
+    app: identity
+spec:
+  selector:
+    app: identity
+  ports:
+    - port: 8080
+      name: http

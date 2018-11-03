@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pg
+  labels:
+    app: pg
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pg
+  template:
+    metadata:
+      labels:
+        app: pg
+    spec:
+      containers:
+      - name: pg
+        image: 172.30.1.1:5000/nemo/pg:latest
+        ports:
+        - containerPort: 5432
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: pg
+spec:
+  selector:
+    app: pg
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432

@@ -1,0 +1,1358 @@
+   0.0 TEL | Telepresence 0.93 launched at Sat Nov  3 16:21:10 2018
+   0.0 TEL |   /usr/bin/telepresence
+   0.0 TEL | Platform: linux
+   0.0 TEL | Python 3.6.6 (default, Jul 19 2018, 14:25:17)
+   0.0 TEL | [GCC 8.1.1 20180712 (Red Hat 8.1.1-5)]
+   0.0 TEL | [1] Running: uname -a
+   0.0   1 | Linux localhost.localdomain 4.18.16-200.fc28.x86_64 #1 SMP Sat Oct 20 23:53:47 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+   0.0 TEL | BEGIN SPAN main.py:41(main)
+   0.0 TEL | BEGIN SPAN startup.py:58(__init__)
+   0.0 TEL | [2] Capturing: kubectl version --short
+   0.4 TEL | [3] Capturing: kubectl config current-context
+   0.4 TEL | [4] Capturing: kubectl config view -o json
+   0.5 TEL | [5] Capturing: kubectl get ns nemo
+   0.6 TEL | Command: kubectl 1.12.2
+   0.6 TEL | Context: nemo/127-0-0-1:8443/system:admin, namespace: nemo, version: 1.11.0+d4cacc0
+   0.6 TEL | END SPAN startup.py:58(__init__)    0.6s
+   0.6 TEL | [6] Capturing: ssh -V
+   0.6 TEL | [7] Running: sudo -n echo -n
+   0.6 >>> | Starting proxy with method 'vpn-tcp', which has the following limitations: All processes are affected, only one telepresence can run per machine, and you can't use other VPNs. You may need to add cloud hosts and headless services with --also-proxy. For a full list of method limitations see https://telepresence.io/reference/methods.html
+   0.6 >>> | Volumes are rooted at $TELEPRESENCE_ROOT. See https://telepresence.io/howto/volumes.html for details.
+   0.6 TEL | [8] Capturing: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo get pods telepresence-connectivity-check --ignore-not-found
+   1.9 TEL | Scout info: {'latest_version': '0.93', 'application': 'telepresence', 'notices': []}
+   1.9 TEL | BEGIN SPAN deployment.py:44(create_new_deployment)
+   1.9 TEL | [9] Capturing: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo delete --ignore-not-found svc,deploy --selector=telepresence=5caaaf27e48c4168bf0939f799e0122a
+   2.0 TEL | [10] Capturing: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo run --restart=Always --limits=cpu=100m,memory=256Mi --requests=cpu=25m,memory=64Mi telepresence-1541254870-407438-14548 --image=datawire/telepresence-k8s:0.93 --labels=telepresence=5caaaf27e48c4168bf0939f799e0122a
+   2.0  10 | kubectl run --generator=deployment/apps.v1beta1 is DEPRECATED and will be removed in a future version. Use kubectl create instead.
+   2.0 TEL | END SPAN deployment.py:44(create_new_deployment)    0.2s
+   2.0 TEL | BEGIN SPAN remote.py:149(get_remote_info)
+   2.0 TEL | BEGIN SPAN remote.py:73(get_deployment_json)
+   2.0 TEL | [11] Capturing: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo get deployment -o json --export --selector=telepresence=5caaaf27e48c4168bf0939f799e0122a
+   2.1 TEL | END SPAN remote.py:73(get_deployment_json)    0.1s
+   2.1 TEL | Searching for Telepresence pod:
+   2.1 TEL |   with name telepresence-1541254870-407438-14548-*
+   2.1 TEL |   with labels {'telepresence': '5caaaf27e48c4168bf0939f799e0122a'}
+   2.1 TEL | [12] Capturing: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo get pod -o json --export --selector=telepresence=5caaaf27e48c4168bf0939f799e0122a
+   2.2 TEL | Checking telepresence-1541254870-407438-14548-7b8f9bff56-9gml2
+   2.2 TEL | Looks like we've found our pod!
+   2.2 TEL | BEGIN SPAN remote.py:111(wait_for_pod)
+   2.2 TEL | [13] Capturing: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo get pod telepresence-1541254870-407438-14548-7b8f9bff56-9gml2 -o json
+   2.5 TEL | [14] Capturing: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo get pod telepresence-1541254870-407438-14548-7b8f9bff56-9gml2 -o json
+   2.9 TEL | [15] Capturing: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo get pod telepresence-1541254870-407438-14548-7b8f9bff56-9gml2 -o json
+   3.2 TEL | [16] Capturing: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo get pod telepresence-1541254870-407438-14548-7b8f9bff56-9gml2 -o json
+   3.8 TEL | [17] Capturing: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo get pod telepresence-1541254870-407438-14548-7b8f9bff56-9gml2 -o json
+   4.5 TEL | [18] Capturing: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo get pod telepresence-1541254870-407438-14548-7b8f9bff56-9gml2 -o json
+   4.6 TEL | END SPAN remote.py:111(wait_for_pod)    2.4s
+   4.6 TEL | END SPAN remote.py:149(get_remote_info)    2.6s
+   4.6 TEL | BEGIN SPAN __init__.py:38(connect)
+   4.6 TEL | [19] Launching kubectl logs: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo logs -f telepresence-1541254870-407438-14548-7b8f9bff56-9gml2 --container telepresence-1541254870-407438-14548
+   4.6 TEL | [20] Launching kubectl port-forward: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo port-forward telepresence-1541254870-407438-14548-7b8f9bff56-9gml2 42625:8022
+   4.6 TEL | [21] Running: ssh -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -p 42625 telepresence@localhost /bin/true
+   4.6 TEL | [21] exit 255 in 0.02 secs.
+   4.8  20 | Forwarding from 127.0.0.1:42625 -> 8022
+   4.8  20 | Forwarding from [::1]:42625 -> 8022
+   4.9 TEL | [22] Running: ssh -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -p 42625 telepresence@localhost /bin/true
+   4.9  20 | Handling connection for 42625
+   5.4 >>> | 
+   5.4 >>> | No traffic is being forwarded from the remote Deployment to your local machine. You can use the --expose option to specify which ports you want to forward.
+   5.4 >>> | 
+   5.4 TEL | Launching Web server for proxy poll
+   5.4 TEL | [23] Launching SSH port forward (socks and proxy poll): ssh -N -oServerAliveInterval=1 -oServerAliveCountMax=10 -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -p 42625 telepresence@localhost -L127.0.0.1:36585:127.0.0.1:9050 -R9055:127.0.0.1:40761
+   5.5  20 | Handling connection for 42625
+   5.5 TEL | END SPAN __init__.py:38(connect)    0.8s
+   5.5 TEL | BEGIN SPAN remote_env.py:65(get_remote_env)
+   5.5 TEL | [24] Capturing: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo exec telepresence-1541254870-407438-14548-7b8f9bff56-9gml2 --container telepresence-1541254870-407438-14548 -- python3 -c 'import json, os; print(json.dumps(dict(os.environ)))'
+   8.6 TEL | [24] captured in 3.12 secs.
+   8.6 TEL | END SPAN remote_env.py:65(get_remote_env)    3.1s
+   8.6 TEL | BEGIN SPAN mount.py:32(mount_remote_volumes)
+   8.6 TEL | [25] Capturing: sshfs -p 42625 -F /dev/null -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null telepresence@localhost:/ /tmp/tel-zokm63ub/fs
+   8.6  20 | Handling connection for 42625
+   9.6 TEL | END SPAN mount.py:32(mount_remote_volumes)    1.1s
+   9.6 TEL | BEGIN SPAN vpn.py:235(connect_sshuttle)
+   9.6 TEL | BEGIN SPAN vpn.py:79(get_proxy_cidrs)
+   9.6 TEL | END SPAN vpn.py:79(get_proxy_cidrs)    0.0s
+   9.6 TEL | [26] Launching sshuttle: sshuttle-telepresence -v --dns --method nat -e 'ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -F /dev/null' --to-ns 127.0.0.1:9053 -r telepresence@localhost:42625 172.30.0.0/16
+   9.6 TEL | BEGIN SPAN vpn.py:276(connect_sshuttle,sshuttle-wait)
+   9.6 TEL | [27] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence0'"'"')'
+   9.8  27 | Traceback (most recent call last):
+   9.8  27 |   File "<string>", line 1, in <module>
+   9.8  27 | socket.gaierror: [Errno -2] Name or service not known
+   9.8 TEL | [27] exit 1 in 0.13 secs.
+   9.9 TEL | [28] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence1'"'"')'
+  10.0  28 | Traceback (most recent call last):
+  10.0  28 |   File "<string>", line 1, in <module>
+  10.0  28 | socket.gaierror: [Errno -2] Name or service not known
+  10.0 TEL | [28] exit 1 in 0.10 secs.
+  10.1 TEL | [29] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence2'"'"')'
+  10.1  26 | Starting sshuttle proxy.
+  10.2  29 | Traceback (most recent call last):
+  10.2  29 |   File "<string>", line 1, in <module>
+  10.2  29 | socket.gaierror: [Errno -2] Name or service not known
+  10.2 TEL | [29] exit 1 in 0.11 secs.
+  10.3 TEL | [30] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence3'"'"')'
+  10.4  30 | Traceback (most recent call last):
+  10.4  30 |   File "<string>", line 1, in <module>
+  10.4  30 | socket.gaierror: [Errno -2] Name or service not known
+  10.4 TEL | [30] exit 1 in 0.11 secs.
+  10.5 TEL | [31] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence4'"'"')'
+  10.6  31 | Traceback (most recent call last):
+  10.6  31 |   File "<string>", line 1, in <module>
+  10.6  31 | socket.gaierror: [Errno -2] Name or service not known
+  10.6 TEL | [31] exit 1 in 0.11 secs.
+  10.7  26 | firewall manager: Starting firewall with Python version 3.6.6
+  10.7  26 | firewall manager: ready method name nat.
+  10.7  26 | IPv6 enabled: False
+  10.7  26 | UDP enabled: False
+  10.7  26 | DNS enabled: True
+  10.7  26 | TCP redirector listening on ('127.0.0.1', 12300).
+  10.7  26 | DNS listening on ('127.0.0.1', 12300).
+  10.7  26 | Starting client with Python version 3.6.6
+  10.7  26 | c : connecting to server...
+  10.7  20 | Handling connection for 42625
+  10.7 TEL | [32] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence5'"'"')'
+  10.8  32 | Traceback (most recent call last):
+  10.8  32 |   File "<string>", line 1, in <module>
+  10.8  32 | socket.gaierror: [Errno -2] Name or service not known
+  10.8 TEL | [32] exit 1 in 0.10 secs.
+  10.9 TEL | [33] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence6'"'"')'
+  11.0  33 | Traceback (most recent call last):
+  11.0  33 |   File "<string>", line 1, in <module>
+  11.0  33 | socket.gaierror: [Errno -2] Name or service not known
+  11.0 TEL | [33] exit 1 in 0.12 secs.
+  11.1 TEL | [34] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence7'"'"')'
+  11.1  26 | Warning: Permanently added '[localhost]:42625' (ECDSA) to the list of known hosts.
+  11.2  34 | Traceback (most recent call last):
+  11.2  34 |   File "<string>", line 1, in <module>
+  11.2  34 | socket.gaierror: [Errno -2] Name or service not known
+  11.2 TEL | [34] exit 1 in 0.10 secs.
+  11.4 TEL | [35] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence8'"'"')'
+  11.5  35 | Traceback (most recent call last):
+  11.5  35 |   File "<string>", line 1, in <module>
+  11.5  35 | socket.gaierror: [Errno -2] Name or service not known
+  11.6 TEL | [35] exit 1 in 0.13 secs.
+  11.7 TEL | [36] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence9'"'"')'
+  11.8  36 | Traceback (most recent call last):
+  11.8  36 |   File "<string>", line 1, in <module>
+  11.8  36 | socket.gaierror: [Errno -2] Name or service not known
+  11.8 TEL | [36] exit 1 in 0.10 secs.
+  11.9 TEL | [37] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence10'"'"')'
+  12.0  37 | Traceback (most recent call last):
+  12.0  37 |   File "<string>", line 1, in <module>
+  12.0  37 | socket.gaierror: [Errno -2] Name or service not known
+  12.0 TEL | [37] exit 1 in 0.11 secs.
+  12.1 TEL | [38] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence11'"'"')'
+  12.2  38 | Traceback (most recent call last):
+  12.2  38 |   File "<string>", line 1, in <module>
+  12.2  38 | socket.gaierror: [Errno -2] Name or service not known
+  12.2 TEL | [38] exit 1 in 0.13 secs.
+  12.3 TEL | [39] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence12'"'"')'
+  12.4  39 | Traceback (most recent call last):
+  12.4  39 |   File "<string>", line 1, in <module>
+  12.4  39 | socket.gaierror: [Errno -2] Name or service not known
+  12.4 TEL | [39] exit 1 in 0.12 secs.
+  12.5 TEL | [40] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence13'"'"')'
+  12.6  40 | Traceback (most recent call last):
+  12.6  40 |   File "<string>", line 1, in <module>
+  12.6  40 | socket.gaierror: [Errno -2] Name or service not known
+  12.7 TEL | [40] exit 1 in 0.13 secs.
+  12.8 TEL | [41] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence14'"'"')'
+  12.9  41 | Traceback (most recent call last):
+  12.9  41 |   File "<string>", line 1, in <module>
+  12.9  41 | socket.gaierror: [Errno -2] Name or service not known
+  12.9 TEL | [41] exit 1 in 0.12 secs.
+  13.0 TEL | [42] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence15'"'"')'
+  13.1  42 | Traceback (most recent call last):
+  13.1  42 |   File "<string>", line 1, in <module>
+  13.1  42 | socket.gaierror: [Errno -2] Name or service not known
+  13.1 TEL | [42] exit 1 in 0.12 secs.
+  13.2 TEL | [43] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence16'"'"')'
+  13.3  43 | Traceback (most recent call last):
+  13.3  43 |   File "<string>", line 1, in <module>
+  13.3  43 | socket.gaierror: [Errno -2] Name or service not known
+  13.3 TEL | [43] exit 1 in 0.13 secs.
+  13.4 TEL | [44] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence17'"'"')'
+  13.4  26 | Starting server with Python version 3.6.5
+  13.4  26 |  s: latency control setting = True
+  13.5  44 | Traceback (most recent call last):
+  13.5  44 |   File "<string>", line 1, in <module>
+  13.5  44 | socket.gaierror: [Errno -2] Name or service not known
+  13.6 TEL | [44] exit 1 in 0.12 secs.
+  13.6  26 |  s: available routes:
+  13.6  26 |  s:   2/172.17.0.0/16
+  13.6  26 | c : Connected.
+  13.6  26 | firewall manager: setting up.
+  13.7 TEL | [45] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence18'"'"')'
+  13.7  26 | >> iptables -t nat -N sshuttle-12300
+  13.7  26 | >> iptables -t nat -F sshuttle-12300
+  13.7  26 | >> iptables -t nat -I OUTPUT 1 -j sshuttle-12300
+  13.7  26 | >> iptables -t nat -I PREROUTING 1 -j sshuttle-12300
+  13.7  26 | >> iptables -t nat -A sshuttle-12300 -j RETURN --dest 127.0.0.1/32 -p tcp
+  13.7  26 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 172.30.0.0/16 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+  13.8  26 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 10.100.102.1/32 -p udp --dport 53 --to-ports 12300 -m ttl ! --ttl 42
+  13.8  26 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 224.0.0.252/32 -p udp --dport 5355 --to-ports 12300 -m ttl ! --ttl 42
+  13.8  26 | conntrack v1.4.4 (conntrack-tools): 0 flow entries have been deleted.
+  13.8  45 | Traceback (most recent call last):
+  13.8  45 |   File "<string>", line 1, in <module>
+  13.8  45 | socket.gaierror: [Errno -2] Name or service not known
+  13.8 TEL | [45] exit 1 in 0.15 secs.
+  13.9 TEL | [46] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence19'"'"')'
+  14.0  26 | c : DNS request from ('10.100.102.3', 48204) to None: 49 bytes
+  17.0  19 | Listening...
+  17.0  19 | 2018-11-03T14:21:24+0000 [-] Loading ./forwarder.py...
+  17.0  19 | 2018-11-03T14:21:27+0000 [-] /etc/resolv.conf changed, reparsing
+  17.0  19 | 2018-11-03T14:21:27+0000 [-] Resolver added ('172.30.0.2', 53) to server list
+  17.0  19 | 2018-11-03T14:21:27+0000 [-] SOCKSv5Factory starting on 9050
+  17.0  19 | 2018-11-03T14:21:27+0000 [socks.SOCKSv5Factory#info] Starting factory <socks.SOCKSv5Factory object at 0x7f20b944a6a0>
+  17.0  19 | 2018-11-03T14:21:27+0000 [-] DNSDatagramProtocol starting on 9053
+  17.1  19 | 2018-11-03T14:21:27+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b944aa20>
+  17.1  19 | 2018-11-03T14:21:27+0000 [-] Loaded.
+  17.1  19 | 2018-11-03T14:21:27+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 18.7.0 (/usr/bin/python3.6 3.6.5) starting up.
+  17.1  19 | 2018-11-03T14:21:27+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+  18.2  26 | c : DNS request from ('10.100.102.3', 35113) to None: 38 bytes
+  18.2  26 | c : DNS request from ('10.100.102.3', 47336) to None: 34 bytes
+  18.2  19 | 2018-11-03T14:21:28+0000 [stdout#info] A query: b'beacons.gcp.gvt2.com'
+  18.2  19 | 2018-11-03T14:21:28+0000 [stdout#info] A query: b'www.google.co.il'
+  19.0  26 | c : DNS request from ('10.100.102.3', 48204) to None: 49 bytes
+  19.0  19 | 2018-11-03T14:21:29+0000 [stdout#info] Set DNS suffix we filter out to: [(b'localdomain',)]
+  19.0  19 | 2018-11-03T14:21:29+0000 [stdout#info] Result for b'hellotelepresence19.localdomain' is ['127.0.0.1']
+  19.0 TEL | [46] captured in 5.08 secs.
+  19.0 TEL | [47] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence20'"'"')'
+  19.0  26 | c : DNS request from ('10.100.102.3', 46834) to None: 49 bytes
+  19.0  19 | 2018-11-03T14:21:29+0000 [stdout#info] Result for b'hellotelepresence20.localdomain' is ['127.0.0.1']
+  19.0 TEL | END SPAN vpn.py:276(connect_sshuttle,sshuttle-wait)    9.4s
+  19.0 TEL | END SPAN vpn.py:235(connect_sshuttle)    9.4s
+  19.0 TEL | Everything launched. Waiting to exit...
+  19.0 TEL | BEGIN SPAN __init__.py:530(wait_for_exit)
+  20.5  26 | c : Accept TCP: 10.100.102.3:53256 -> 172.30.248.186:443.
+  20.5  26 | c : Accept TCP: 10.100.102.3:53258 -> 172.30.248.186:443.
+  20.5  26 | c : Accept TCP: 10.100.102.3:53252 -> 172.30.248.186:443.
+  20.5  26 | c : Accept TCP: 10.100.102.3:53254 -> 172.30.248.186:443.
+  20.5  26 | c : Accept TCP: 10.100.102.3:53260 -> 172.30.248.186:443.
+  20.5  26 | c : Accept TCP: 10.100.102.3:53292 -> 172.30.248.186:443.
+  20.5  26 | c : SW#8:10.100.102.3:53256: uwrite: got EPIPE
+  20.5  26 | c : warning: closed channel 6 got cmd=TCP_EOF len=0
+  20.5  26 |  s: warning: closed channel 6 got cmd=TCP_STOP_SENDING len=0
+  20.5  26 |  s: SW'unknown':Mux#6: deleting (11 remain)
+  20.5  26 |  s: SW#11:172.30.248.186:443: deleting (10 remain)
+  20.5  26 | c : SW#8:10.100.102.3:53256: deleting (11 remain)
+  20.5  26 | c : SW#8:10.100.102.3:53256: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  20.5  26 | c : SW'unknown':Mux#6: deleting (10 remain)
+  20.5  26 | c : SW#11:10.100.102.3:53252: deleting (9 remain)
+  20.5  26 | c : SW#11:10.100.102.3:53252: error was: uread: [Errno 104] Connection reset by peer
+  20.5  26 | c : SW'unknown':Mux#8: deleting (8 remain)
+  20.5  26 | c : SW#10:10.100.102.3:53258: uwrite: got EPIPE
+  20.5  26 | c : warning: closed channel 8 got cmd=TCP_DATA len=31
+  20.5  26 | c : warning: closed channel 7 got cmd=TCP_EOF len=0
+  20.5  26 | c : SW#12:10.100.102.3:53254: uwrite: got EPIPE
+  20.5  26 |  s: warning: closed channel 7 got cmd=TCP_STOP_SENDING len=0
+  20.5  26 | c : warning: closed channel 9 got cmd=TCP_EOF len=0
+  20.5  26 | c : Accept TCP: 10.100.102.3:53296 -> 172.30.248.186:443.
+  20.5  26 |  s: warning: closed channel 9 got cmd=TCP_STOP_SENDING len=0
+  20.5  26 | c : Accept TCP: 10.100.102.3:53298 -> 172.30.248.186:443.
+  20.5  26 | c : Accept TCP: 10.100.102.3:53300 -> 172.30.248.186:443.
+  20.5  26 | c : Accept TCP: 10.100.102.3:53302 -> 172.30.248.186:443.
+  20.6  26 | c : SW#10:10.100.102.3:53258: deleting (15 remain)
+  20.6  26 | c : SW#10:10.100.102.3:53258: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  20.6  26 | c : SW'unknown':Mux#7: deleting (14 remain)
+  20.6  26 | c : SW#12:10.100.102.3:53254: deleting (13 remain)
+  20.6  26 | c : SW#12:10.100.102.3:53254: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  20.6  26 | c : SW'unknown':Mux#9: deleting (12 remain)
+  20.6  26 | c : SW#14:10.100.102.3:53292: deleting (11 remain)
+  20.6  26 | c : SW#14:10.100.102.3:53292: error was: uread: [Errno 104] Connection reset by peer
+  20.6  26 | c : SW'unknown':Mux#11: deleting (10 remain)
+  20.6  26 | c : Accept TCP: 10.100.102.3:53312 -> 172.30.248.186:443.
+  20.7  26 |  s: SW'unknown':Mux#8: deleting (17 remain)
+  20.7  26 |  s: SW#13:172.30.248.186:443: deleting (16 remain)
+  20.7  26 |  s: SW'unknown':Mux#7: deleting (15 remain)
+  20.7  26 |  s: SW#12:172.30.248.186:443: deleting (14 remain)
+  20.7  26 |  s: SW'unknown':Mux#11: deleting (13 remain)
+  20.7  26 |  s: SW#6:172.30.248.186:443: deleting (12 remain)
+  20.7  26 | c : warning: closed channel 13 got cmd=TCP_DATA len=31
+  20.7  26 |  s: warning: closed channel 13 got cmd=TCP_STOP_SENDING len=0
+  20.7  26 | c : warning: closed channel 13 got cmd=TCP_EOF len=0
+  20.7  26 | c : SW#11:10.100.102.3:53298: deleting (11 remain)
+  20.7  26 | c : SW#11:10.100.102.3:53298: error was: uread: [Errno 104] Connection reset by peer
+  20.7  26 | c : SW'unknown':Mux#13: deleting (10 remain)
+  20.7  26 | c : SW#16:10.100.102.3:53302: uwrite: got EPIPE
+  20.7  26 | c : Accept TCP: 10.100.102.3:53316 -> 172.30.248.186:443.
+  20.7  26 | c : Accept TCP: 10.100.102.3:53318 -> 172.30.248.186:443.
+  20.8  26 | c : Accept TCP: 10.100.102.3:53320 -> 172.30.248.186:443.
+  20.8  26 | c : Accept TCP: 10.100.102.3:53322 -> 172.30.248.186:443.
+  20.8  26 | c : Accept TCP: 10.100.102.3:53332 -> 172.30.248.186:443.
+  20.8  26 | c : SW#15:10.100.102.3:53300: deleting (19 remain)
+  20.8  26 | c : SW#15:10.100.102.3:53300: error was: uread: [Errno 104] Connection reset by peer
+  20.8  26 | c : SW'unknown':Mux#14: deleting (18 remain)
+  20.8  26 |  s: SW'unknown':Mux#12: deleting (21 remain)
+  20.8  26 |  s: SW#7:172.30.248.186:443: deleting (20 remain)
+  20.8  26 |  s: SW'unknown':Mux#13: deleting (19 remain)
+  20.8  26 |  s: SW#8:172.30.248.186:443: deleting (18 remain)
+  20.8  26 |  s: SW'unknown':Mux#15: deleting (17 remain)
+  20.8  26 |  s: SW#16:172.30.248.186:443: deleting (16 remain)
+  20.8  26 |  s: SW'unknown':Mux#14: deleting (15 remain)
+  20.8  26 |  s: SW#11:172.30.248.186:443: deleting (14 remain)
+  20.8  26 | c : SW#10:10.100.102.3:53312: uwrite: got EPIPE
+  20.8  26 | c : SW#13:10.100.102.3:53260: deleting (17 remain)
+  20.8  26 | c : SW#13:10.100.102.3:53260: error was: uread: [Errno 104] Connection reset by peer
+  20.8  26 | c : SW'unknown':Mux#10: deleting (16 remain)
+  20.8  26 | c : SW#8:10.100.102.3:53296: deleting (15 remain)
+  20.8  26 | c : SW#8:10.100.102.3:53296: error was: uread: [Errno 104] Connection reset by peer
+  20.8  26 | c : SW'unknown':Mux#12: deleting (14 remain)
+  20.8  26 | c : SW'unknown':Mux#15: deleting (13 remain)
+  20.8  26 | c : SW#16:10.100.102.3:53302: deleting (12 remain)
+  20.8  26 | c : SW#16:10.100.102.3:53302: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  20.8  26 | c : SW'unknown':Mux#16: deleting (11 remain)
+  20.8  26 | c : SW#10:10.100.102.3:53312: deleting (10 remain)
+  20.8  26 | c : SW#10:10.100.102.3:53312: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  20.8  26 | c : SW'unknown':Mux#17: deleting (9 remain)
+  20.8  26 | c : SW#11:10.100.102.3:53316: deleting (8 remain)
+  20.8  26 | c : SW#11:10.100.102.3:53316: error was: uread: [Errno 104] Connection reset by peer
+  20.8  26 | c : warning: closed channel 17 got cmd=TCP_DATA len=31
+  20.8  26 |  s: warning: closed channel 17 got cmd=TCP_STOP_SENDING len=0
+  20.8  26 | c : warning: closed channel 17 got cmd=TCP_EOF len=0
+  20.8  26 |  s: SW'unknown':Mux#16: deleting (15 remain)
+  20.8  26 |  s: SW#6:172.30.248.186:443: deleting (14 remain)
+  20.8  26 | c : Accept TCP: 10.100.102.3:53336 -> 172.30.248.186:443.
+  20.8  26 | c : Accept TCP: 10.100.102.3:53338 -> 172.30.248.186:443.
+  20.9  26 |  s: SW'unknown':Mux#17: deleting (13 remain)
+  20.9  26 |  s: SW#12:172.30.248.186:443: deleting (12 remain)
+  20.9  26 | c : SW#12:10.100.102.3:53318: uwrite: got EPIPE
+  20.9  26 | c : SW#17:10.100.102.3:53322: uwrite: got EPIPE
+  20.9  26 | c : warning: closed channel 18 got cmd=TCP_EOF len=0
+  20.9  26 | c : warning: closed channel 20 got cmd=TCP_EOF len=0
+  20.9  26 |  s: warning: closed channel 18 got cmd=TCP_STOP_SENDING len=0
+  20.9  26 |  s: warning: closed channel 20 got cmd=TCP_STOP_SENDING len=0
+  21.0  26 | c : SW#14:10.100.102.3:53320: deleting (11 remain)
+  21.0  26 | c : SW#14:10.100.102.3:53320: error was: uread: [Errno 104] Connection reset by peer
+  21.0  26 | c : SW'unknown':Mux#19: deleting (10 remain)
+  21.0  26 | c : SW#17:10.100.102.3:53322: deleting (9 remain)
+  21.0  26 | c : SW#17:10.100.102.3:53322: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  21.0  26 | c : SW'unknown':Mux#20: deleting (8 remain)
+  21.0  26 | c : warning: closed channel 21 got cmd=TCP_DATA len=31
+  21.0  26 |  s: warning: closed channel 23 got cmd=TCP_STOP_SENDING len=0
+  21.0  26 | c : warning: closed channel 23 got cmd=TCP_DATA len=31
+  21.0  26 | c : warning: closed channel 23 got cmd=TCP_EOF len=0
+  23.2  26 | c : DNS request from ('10.100.102.3', 35113) to None: 38 bytes
+  23.2  26 | c : DNS request from ('10.100.102.3', 47336) to None: 34 bytes
+  23.2  19 | 2018-11-03T14:21:33+0000 [stdout#info] A query: b'beacons.gcp.gvt2.com'
+  23.2  19 | 2018-11-03T14:21:33+0000 [stdout#info] A query: b'www.google.co.il'
+  23.2  19 | 2018-11-03T14:21:33+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  23.2  26 | c : DNS request from ('10.100.102.3', 36456) to None: 50 bytes
+  23.2  19 | 2018-11-03T14:21:33+0000 [stdout#info] Updated query of type 1 from b'beacons.gcp.gvt2.com.localdomain' to b'beacons.gcp.gvt2.com'
+  23.2  19 | 2018-11-03T14:21:33+0000 [stdout#info] A query: b'beacons.gcp.gvt2.com'
+  23.3  19 | 2018-11-03T14:21:33+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  23.3  26 | c : DNS request from ('10.100.102.3', 51513) to None: 46 bytes
+  23.3  19 | 2018-11-03T14:21:33+0000 [stdout#info] Updated query of type 1 from b'www.google.co.il.localdomain' to b'www.google.co.il'
+  23.3  19 | 2018-11-03T14:21:33+0000 [stdout#info] A query: b'www.google.co.il'
+  24.2  26 | c : DNS request from ('10.100.102.3', 37191) to None: 38 bytes
+  24.2  26 | c : DNS request from ('10.100.102.3', 56041) to None: 34 bytes
+  24.2  19 | 2018-11-03T14:21:34+0000 [stdout#info] A query: b'beacons.gcp.gvt2.com'
+  24.2  19 | 2018-11-03T14:21:34+0000 [stdout#info] A query: b'www.google.co.il'
+  28.2  19 | 2018-11-03T14:21:38+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  28.2  19 | 2018-11-03T14:21:38+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  28.3  26 | c : DNS request from ('10.100.102.3', 36456) to None: 50 bytes
+  28.3  19 | 2018-11-03T14:21:38+0000 [stdout#info] Updated query of type 1 from b'beacons.gcp.gvt2.com.localdomain' to b'beacons.gcp.gvt2.com'
+  28.3  19 | 2018-11-03T14:21:38+0000 [stdout#info] A query: b'beacons.gcp.gvt2.com'
+  28.3  19 | 2018-11-03T14:21:38+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  28.3  19 | 2018-11-03T14:21:38+0000 [stdout#info] Failed to lookup b'beacons.gcp.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  28.3  19 | 2018-11-03T14:21:38+0000 [stdout#info] ], falling back to b'beacons.gcp.gvt2.com.localdomain'
+  28.3  19 | 2018-11-03T14:21:38+0000 [-] DNSDatagramProtocol starting on 54326
+  28.3  19 | 2018-11-03T14:21:38+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9413470>
+  28.3  26 | c : DNS request from ('10.100.102.3', 51513) to None: 46 bytes
+  28.3  19 | 2018-11-03T14:21:38+0000 [stdout#info] Updated query of type 1 from b'www.google.co.il.localdomain' to b'www.google.co.il'
+  28.3  19 | 2018-11-03T14:21:38+0000 [stdout#info] A query: b'www.google.co.il'
+  28.3  19 | 2018-11-03T14:21:38+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  28.3  19 | 2018-11-03T14:21:38+0000 [stdout#info] Failed to lookup b'www.google.co.il' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  28.3  19 | 2018-11-03T14:21:38+0000 [stdout#info] ], falling back to b'www.google.co.il.localdomain'
+  28.3  19 | 2018-11-03T14:21:38+0000 [-] DNSDatagramProtocol starting on 8836
+  28.3  19 | 2018-11-03T14:21:38+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b94137b8>
+  29.2  26 | c : DNS request from ('10.100.102.3', 37191) to None: 38 bytes
+  29.2  26 | c : DNS request from ('10.100.102.3', 56041) to None: 34 bytes
+  29.2  19 | 2018-11-03T14:21:39+0000 [stdout#info] A query: b'beacons.gcp.gvt2.com'
+  29.2  26 | c : DNS request from ('10.100.102.3', 39229) to None: 50 bytes
+  29.2  26 | c : DNS request from ('10.100.102.3', 60601) to None: 46 bytes
+  29.2  19 | 2018-11-03T14:21:39+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  29.2  19 | 2018-11-03T14:21:39+0000 [stdout#info] A query: b'www.google.co.il'
+  29.2  19 | 2018-11-03T14:21:39+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  29.2  19 | 2018-11-03T14:21:39+0000 [stdout#info] Updated query of type 1 from b'beacons.gcp.gvt2.com.localdomain' to b'beacons.gcp.gvt2.com'
+  29.2  19 | 2018-11-03T14:21:39+0000 [stdout#info] A query: b'beacons.gcp.gvt2.com'
+  29.2  19 | 2018-11-03T14:21:39+0000 [stdout#info] Updated query of type 1 from b'www.google.co.il.localdomain' to b'www.google.co.il'
+  29.2  19 | 2018-11-03T14:21:39+0000 [stdout#info] A query: b'www.google.co.il'
+  29.3  19 | 2018-11-03T14:21:39+0000 [-] DNSDatagramProtocol starting on 62157
+  29.3  19 | 2018-11-03T14:21:39+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9405b70>
+  29.3  19 | 2018-11-03T14:21:39+0000 [-] (UDP Port 54326 Closed)
+  29.3  19 | 2018-11-03T14:21:39+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9413470>
+  29.3  19 | 2018-11-03T14:21:39+0000 [-] DNSDatagramProtocol starting on 23957
+  29.3  19 | 2018-11-03T14:21:39+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b94134e0>
+  29.4  19 | 2018-11-03T14:21:39+0000 [-] (UDP Port 8836 Closed)
+  29.4  19 | 2018-11-03T14:21:39+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b94137b8>
+  30.6 TEL | [48] Running: sudo -n echo -n
+  32.2  26 | c : DNS request from ('10.100.102.3', 47484) to None: 33 bytes
+  32.2  19 | 2018-11-03T14:21:42+0000 [stdout#info] A query: b'www.youtube.com'
+  32.3  19 | 2018-11-03T14:21:42+0000 [-] DNSDatagramProtocol starting on 56174
+  32.3  19 | 2018-11-03T14:21:42+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9422160>
+  32.3  19 | 2018-11-03T14:21:42+0000 [-] (UDP Port 62157 Closed)
+  32.3  19 | 2018-11-03T14:21:42+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9405b70>
+  32.4  19 | 2018-11-03T14:21:42+0000 [-] DNSDatagramProtocol starting on 26587
+  32.4  19 | 2018-11-03T14:21:42+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9413978>
+  32.4  19 | 2018-11-03T14:21:42+0000 [-] (UDP Port 23957 Closed)
+  32.4  19 | 2018-11-03T14:21:42+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b94134e0>
+  33.3  26 | c : DNS request from ('10.100.102.3', 36493) to None: 34 bytes
+  33.3  19 | 2018-11-03T14:21:43+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  33.3  19 | 2018-11-03T14:21:43+0000 [stdout#info] Failed to lookup b'beacons.gcp.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  33.3  19 | 2018-11-03T14:21:43+0000 [stdout#info] ], falling back to b'beacons.gcp.gvt2.com.localdomain'
+  33.3  19 | 2018-11-03T14:21:43+0000 [stdout#info] A query: b'beacons.gvt2.com'
+  33.4  26 | c : DNS request from ('10.100.102.3', 56206) to None: 34 bytes
+  33.4  19 | 2018-11-03T14:21:43+0000 [stdout#info] A query: b'www.google.co.il'
+  33.4  19 | 2018-11-03T14:21:43+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  33.4  19 | 2018-11-03T14:21:43+0000 [stdout#info] Failed to lookup b'www.google.co.il' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  33.4  19 | 2018-11-03T14:21:43+0000 [stdout#info] ], falling back to b'www.google.co.il.localdomain'
+  34.2  19 | 2018-11-03T14:21:44+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  34.2  26 | c : DNS request from ('10.100.102.3', 39229) to None: 50 bytes
+  34.2  26 | c : DNS request from ('10.100.102.3', 60601) to None: 46 bytes
+  34.2  19 | 2018-11-03T14:21:44+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  34.2  19 | 2018-11-03T14:21:44+0000 [stdout#info] Updated query of type 1 from b'beacons.gcp.gvt2.com.localdomain' to b'beacons.gcp.gvt2.com'
+  34.2  19 | 2018-11-03T14:21:44+0000 [stdout#info] A query: b'beacons.gcp.gvt2.com'
+  34.2  19 | 2018-11-03T14:21:44+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  34.2  19 | 2018-11-03T14:21:44+0000 [stdout#info] Failed to lookup b'beacons.gcp.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  34.2  19 | 2018-11-03T14:21:44+0000 [stdout#info] ], falling back to b'beacons.gcp.gvt2.com.localdomain'
+  34.2  19 | 2018-11-03T14:21:44+0000 [stdout#info] Updated query of type 1 from b'www.google.co.il.localdomain' to b'www.google.co.il'
+  34.2  19 | 2018-11-03T14:21:44+0000 [stdout#info] A query: b'www.google.co.il'
+  34.2  19 | 2018-11-03T14:21:44+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  34.2  19 | 2018-11-03T14:21:44+0000 [stdout#info] Failed to lookup b'www.google.co.il' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  34.2  19 | 2018-11-03T14:21:44+0000 [stdout#info] ], falling back to b'www.google.co.il.localdomain'
+  37.2  26 | c : DNS request from ('10.100.102.3', 47484) to None: 33 bytes
+  37.2  19 | 2018-11-03T14:21:47+0000 [stdout#info] A query: b'www.youtube.com'
+  37.2  26 | c : DNS request from ('10.100.102.3', 36656) to None: 45 bytes
+  37.2  19 | 2018-11-03T14:21:47+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  37.2  19 | 2018-11-03T14:21:47+0000 [stdout#info] Updated query of type 1 from b'www.youtube.com.localdomain' to b'www.youtube.com'
+  37.2  19 | 2018-11-03T14:21:47+0000 [stdout#info] A query: b'www.youtube.com'
+  38.2  26 | c : DNS request from ('10.100.102.3', 43071) to None: 33 bytes
+  38.2  19 | 2018-11-03T14:21:48+0000 [stdout#info] A query: b'www.youtube.com'
+  38.3  26 | c : DNS request from ('10.100.102.3', 36493) to None: 34 bytes
+  38.3  19 | 2018-11-03T14:21:48+0000 [stdout#info] A query: b'beacons.gvt2.com'
+  38.3  19 | 2018-11-03T14:21:48+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  38.3  26 | c : DNS request from ('10.100.102.3', 55570) to None: 46 bytes
+  38.3  19 | 2018-11-03T14:21:48+0000 [stdout#info] Updated query of type 1 from b'beacons.gvt2.com.localdomain' to b'beacons.gvt2.com'
+  38.4  19 | 2018-11-03T14:21:48+0000 [stdout#info] A query: b'beacons.gvt2.com'
+  38.4  26 | c : DNS request from ('10.100.102.3', 56206) to None: 34 bytes
+  38.4  19 | 2018-11-03T14:21:48+0000 [stdout#info] A query: b'www.google.co.il'
+  38.4  19 | 2018-11-03T14:21:48+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  38.4  26 | c : DNS request from ('10.100.102.3', 46977) to None: 46 bytes
+  38.4  19 | 2018-11-03T14:21:48+0000 [stdout#info] Updated query of type 1 from b'www.google.co.il.localdomain' to b'www.google.co.il'
+  38.5  19 | 2018-11-03T14:21:48+0000 [stdout#info] A query: b'www.google.co.il'
+  39.2  19 | 2018-11-03T14:21:49+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  39.2  19 | 2018-11-03T14:21:49+0000 [stdout#info] Failed to lookup b'beacons.gcp.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  39.2  19 | 2018-11-03T14:21:49+0000 [stdout#info] ], falling back to b'beacons.gcp.gvt2.com.localdomain'
+  39.2  19 | 2018-11-03T14:21:49+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  39.2  19 | 2018-11-03T14:21:49+0000 [stdout#info] Failed to lookup b'www.google.co.il' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  39.2  19 | 2018-11-03T14:21:49+0000 [stdout#info] ], falling back to b'www.google.co.il.localdomain'
+  39.3  26 | c : DNS request from ('10.100.102.3', 42217) to None: 34 bytes
+  39.3  19 | 2018-11-03T14:21:49+0000 [stdout#info] A query: b'beacons.gvt2.com'
+  39.4  26 | c : DNS request from ('10.100.102.3', 54384) to None: 34 bytes
+  39.4  19 | 2018-11-03T14:21:49+0000 [stdout#info] A query: b'www.google.co.il'
+  42.2  26 | c : DNS request from ('10.100.102.3', 36656) to None: 45 bytes
+  42.2  19 | 2018-11-03T14:21:52+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  42.2  19 | 2018-11-03T14:21:52+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  42.2  19 | 2018-11-03T14:21:52+0000 [stdout#info] Failed to lookup b'www.youtube.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  42.2  19 | 2018-11-03T14:21:52+0000 [stdout#info] ], falling back to b'www.youtube.com.localdomain'
+  42.2  19 | 2018-11-03T14:21:52+0000 [-] DNSDatagramProtocol starting on 43799
+  42.2  19 | 2018-11-03T14:21:52+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9413ef0>
+  42.2  19 | 2018-11-03T14:21:52+0000 [stdout#info] Updated query of type 1 from b'www.youtube.com.localdomain' to b'www.youtube.com'
+  42.2  19 | 2018-11-03T14:21:52+0000 [stdout#info] A query: b'www.youtube.com'
+  43.2  26 | c : DNS request from ('10.100.102.3', 43071) to None: 33 bytes
+  43.2  19 | 2018-11-03T14:21:53+0000 [stdout#info] A query: b'www.youtube.com'
+  43.2  26 | c : DNS request from ('10.100.102.3', 58294) to None: 45 bytes
+  43.2  19 | 2018-11-03T14:21:53+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  43.2  19 | 2018-11-03T14:21:53+0000 [stdout#info] Updated query of type 1 from b'www.youtube.com.localdomain' to b'www.youtube.com'
+  43.2  19 | 2018-11-03T14:21:53+0000 [stdout#info] A query: b'www.youtube.com'
+  43.2  19 | 2018-11-03T14:21:53+0000 [-] DNSDatagramProtocol starting on 64973
+  43.2  19 | 2018-11-03T14:21:53+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b93487b8>
+  43.2  19 | 2018-11-03T14:21:53+0000 [-] (UDP Port 43799 Closed)
+  43.2  19 | 2018-11-03T14:21:53+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9413ef0>
+  43.3  19 | 2018-11-03T14:21:53+0000 [-] DNSDatagramProtocol starting on 58184
+  43.3  19 | 2018-11-03T14:21:53+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9413e80>
+  43.3  19 | 2018-11-03T14:21:53+0000 [-] (UDP Port 56174 Closed)
+  43.3  19 | 2018-11-03T14:21:53+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9422160>
+  43.3  19 | 2018-11-03T14:21:53+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  43.3  26 | c : DNS request from ('10.100.102.3', 55570) to None: 46 bytes
+  43.4  19 | 2018-11-03T14:21:53+0000 [stdout#info] Updated query of type 1 from b'beacons.gvt2.com.localdomain' to b'beacons.gvt2.com'
+  43.4  19 | 2018-11-03T14:21:53+0000 [stdout#info] A query: b'beacons.gvt2.com'
+  43.4  19 | 2018-11-03T14:21:53+0000 [-] DNSDatagramProtocol starting on 10591
+  43.4  19 | 2018-11-03T14:21:53+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9348b38>
+  43.4  19 | 2018-11-03T14:21:53+0000 [-] (UDP Port 26587 Closed)
+  43.4  19 | 2018-11-03T14:21:53+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9413978>
+  43.4  19 | 2018-11-03T14:21:53+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  43.4  19 | 2018-11-03T14:21:53+0000 [stdout#info] Failed to lookup b'beacons.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  43.4  19 | 2018-11-03T14:21:53+0000 [stdout#info] ], falling back to b'beacons.gvt2.com.localdomain'
+  43.4  19 | 2018-11-03T14:21:53+0000 [-] DNSDatagramProtocol starting on 59026
+  43.4  19 | 2018-11-03T14:21:53+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b933d208>
+  43.4  19 | 2018-11-03T14:21:53+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  43.4  26 | c : DNS request from ('10.100.102.3', 46977) to None: 46 bytes
+  43.5  19 | 2018-11-03T14:21:53+0000 [stdout#info] Updated query of type 1 from b'www.google.co.il.localdomain' to b'www.google.co.il'
+  43.5  19 | 2018-11-03T14:21:53+0000 [stdout#info] A query: b'www.google.co.il'
+  43.5  19 | 2018-11-03T14:21:53+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  43.6  19 | 2018-11-03T14:21:53+0000 [stdout#info] Failed to lookup b'www.google.co.il' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  43.6  19 | 2018-11-03T14:21:53+0000 [stdout#info] ], falling back to b'www.google.co.il.localdomain'
+  44.3  26 | c : DNS request from ('10.100.102.3', 42217) to None: 34 bytes
+  44.3  19 | 2018-11-03T14:21:54+0000 [stdout#info] A query: b'beacons.gvt2.com'
+  44.3  26 | c : DNS request from ('10.100.102.3', 57575) to None: 46 bytes
+  44.3  19 | 2018-11-03T14:21:54+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  44.3  19 | 2018-11-03T14:21:54+0000 [stdout#info] Updated query of type 1 from b'beacons.gvt2.com.localdomain' to b'beacons.gvt2.com'
+  44.3  19 | 2018-11-03T14:21:54+0000 [stdout#info] A query: b'beacons.gvt2.com'
+  44.4  26 | c : DNS request from ('10.100.102.3', 54384) to None: 34 bytes
+  44.4  19 | 2018-11-03T14:21:54+0000 [stdout#info] A query: b'www.google.co.il'
+  44.4  19 | 2018-11-03T14:21:54+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  44.4  26 | c : DNS request from ('10.100.102.3', 40795) to None: 46 bytes
+  44.4  19 | 2018-11-03T14:21:54+0000 [stdout#info] Updated query of type 1 from b'www.google.co.il.localdomain' to b'www.google.co.il'
+  44.4  19 | 2018-11-03T14:21:54+0000 [stdout#info] A query: b'www.google.co.il'
+  44.4  19 | 2018-11-03T14:21:54+0000 [-] DNSDatagramProtocol starting on 42263
+  44.4  19 | 2018-11-03T14:21:54+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9355710>
+  44.4  19 | 2018-11-03T14:21:54+0000 [-] (UDP Port 59026 Closed)
+  44.4  19 | 2018-11-03T14:21:54+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b933d208>
+  46.2  19 | 2018-11-03T14:21:56+0000 [-] DNSDatagramProtocol starting on 30405
+  46.2  19 | 2018-11-03T14:21:56+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9348d30>
+  46.3  19 | 2018-11-03T14:21:56+0000 [-] (UDP Port 64973 Closed)
+  46.3  19 | 2018-11-03T14:21:56+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b93487b8>
+  47.1 TEL | (proxy checking local liveness)
+  47.1  19 | 2018-11-03T14:21:57+0000 [Poll#info] Checkpoint
+  47.2  26 | c : DNS request from ('10.100.102.3', 35441) to None: 33 bytes
+  47.2  19 | 2018-11-03T14:21:57+0000 [stdout#info] A query: b'www.youtube.com'
+  47.3  19 | 2018-11-03T14:21:57+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  47.3  19 | 2018-11-03T14:21:57+0000 [stdout#info] Failed to lookup b'www.youtube.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  47.3  19 | 2018-11-03T14:21:57+0000 [stdout#info] ], falling back to b'www.youtube.com.localdomain'
+  47.4  19 | 2018-11-03T14:21:57+0000 [-] DNSDatagramProtocol starting on 37266
+  47.4  19 | 2018-11-03T14:21:57+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b93482b0>
+  47.5  19 | 2018-11-03T14:21:57+0000 [-] (UDP Port 42263 Closed)
+  47.5  19 | 2018-11-03T14:21:57+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9355710>
+  48.2  19 | 2018-11-03T14:21:58+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  48.2  26 | c : DNS request from ('10.100.102.3', 58294) to None: 45 bytes
+  48.2  19 | 2018-11-03T14:21:58+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  48.2  19 | 2018-11-03T14:21:58+0000 [stdout#info] Failed to lookup b'www.youtube.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  48.2  19 | 2018-11-03T14:21:58+0000 [stdout#info] ], falling back to b'www.youtube.com.localdomain'
+  48.2  19 | 2018-11-03T14:21:58+0000 [stdout#info] Updated query of type 1 from b'www.youtube.com.localdomain' to b'www.youtube.com'
+  48.2  19 | 2018-11-03T14:21:58+0000 [stdout#info] A query: b'www.youtube.com'
+  48.4  19 | 2018-11-03T14:21:58+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  48.4  19 | 2018-11-03T14:21:58+0000 [stdout#info] Failed to lookup b'beacons.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  48.4  19 | 2018-11-03T14:21:58+0000 [stdout#info] ], falling back to b'beacons.gvt2.com.localdomain'
+  48.5  19 | 2018-11-03T14:21:58+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  48.5  26 | c : DNS request from ('10.100.102.3', 56879) to None: 35 bytes
+  48.5  19 | 2018-11-03T14:21:58+0000 [stdout#info] Failed to lookup b'www.google.co.il' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  48.5  19 | 2018-11-03T14:21:58+0000 [stdout#info] ], falling back to b'www.google.co.il.localdomain'
+  48.5  19 | 2018-11-03T14:21:58+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  49.3  19 | 2018-11-03T14:21:59+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  49.3  26 | c : DNS request from ('10.100.102.3', 57575) to None: 46 bytes
+  49.3  19 | 2018-11-03T14:21:59+0000 [stdout#info] Updated query of type 1 from b'beacons.gvt2.com.localdomain' to b'beacons.gvt2.com'
+  49.4  19 | 2018-11-03T14:21:59+0000 [stdout#info] A query: b'beacons.gvt2.com'
+  49.4  26 | c : DNS request from ('10.100.102.3', 40795) to None: 46 bytes
+  49.4  19 | 2018-11-03T14:21:59+0000 [stdout#info] Updated query of type 1 from b'www.google.co.il.localdomain' to b'www.google.co.il'
+  49.5  19 | 2018-11-03T14:21:59+0000 [stdout#info] A query: b'www.google.co.il'
+  49.5  19 | 2018-11-03T14:21:59+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  49.5  19 | 2018-11-03T14:21:59+0000 [stdout#info] Failed to lookup b'beacons.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  49.5  19 | 2018-11-03T14:21:59+0000 [stdout#info] ], falling back to b'beacons.gvt2.com.localdomain'
+  49.5  19 | 2018-11-03T14:21:59+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  49.5  19 | 2018-11-03T14:21:59+0000 [stdout#info] Failed to lookup b'www.google.co.il' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  49.5  19 | 2018-11-03T14:21:59+0000 [stdout#info] ], falling back to b'www.google.co.il.localdomain'
+  49.5  19 | 2018-11-03T14:21:59+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  49.9  26 | c : DNS request from ('10.100.102.3', 52454) to None: 34 bytes
+  49.9  19 | 2018-11-03T14:22:00+0000 [stdout#info] A query: b'beacons.gvt2.com'
+  50.5  26 | c : Accept TCP: 10.100.102.3:53500 -> 172.30.248.186:443.
+  50.5  26 | c : Accept TCP: 10.100.102.3:53504 -> 172.30.248.186:443.
+  50.5  26 | c : Accept TCP: 10.100.102.3:53508 -> 172.30.248.186:443.
+  50.5  26 | c : Accept TCP: 10.100.102.3:53510 -> 172.30.248.186:443.
+  50.5  26 |  s: SW#-1:172.30.248.186:443: deleting (21 remain)
+  50.5  26 |  s: SW'unknown':Mux#22: deleting (20 remain)
+  50.5  26 |  s: SW#-1:172.30.248.186:443: deleting (19 remain)
+  50.5  26 |  s: SW'unknown':Mux#23: deleting (18 remain)
+  50.5  26 |  s: SW'unknown':Mux#19: deleting (17 remain)
+  50.5  26 |  s: SW#17:172.30.248.186:443: deleting (16 remain)
+  50.5  26 |  s: SW'unknown':Mux#20: deleting (15 remain)
+  50.5  26 |  s: SW#18:172.30.248.186:443: deleting (14 remain)
+  50.5  26 |  s: SW'unknown':Mux#18: deleting (13 remain)
+  50.5  26 |  s: SW#13:172.30.248.186:443: deleting (12 remain)
+  50.5  26 |  s: SW'unknown':Mux#21: deleting (11 remain)
+  50.5  26 |  s: SW#7:172.30.248.186:443: deleting (10 remain)
+  50.5  26 | c : SW#8:10.100.102.3:53336: deleting (15 remain)
+  50.5  26 | c : SW#8:10.100.102.3:53336: error was: uread: [Errno 104] Connection reset by peer
+  50.5  26 | c : SW'unknown':Mux#22: deleting (14 remain)
+  50.5  26 | c : Accept TCP: 10.100.102.3:53516 -> 172.30.248.186:443.
+  50.6  26 | c : Accept TCP: 10.100.102.3:53520 -> 172.30.248.186:443.
+  50.6  26 | c : Accept TCP: 10.100.102.3:53522 -> 172.30.248.186:443.
+  50.6  26 | c : SW#13:10.100.102.3:53504: uwrite: got EPIPE
+  50.6  26 | c : SW#11:10.100.102.3:53500: deleting (19 remain)
+  50.6  26 |  s: SW'unknown':Mux#66: deleting (17 remain)
+  50.6  26 |  s: SW#38:172.30.248.186:443: deleting (16 remain)
+  50.6  26 | c : SW#11:10.100.102.3:53500: error was: uread: [Errno 104] Connection reset by peer
+  50.6  26 | c : SW'unknown':Mux#65: deleting (18 remain)
+  50.6  26 | c : SW#14:10.100.102.3:53508: deleting (17 remain)
+  50.6  26 | c : SW#14:10.100.102.3:53508: error was: uread: [Errno 104] Connection reset by peer
+  50.6  26 | c : SW'unknown':Mux#67: deleting (16 remain)
+  50.6  26 | c : warning: closed channel 66 got cmd=TCP_EOF len=0
+  50.6  26 | c : Accept TCP: 10.100.102.3:53528 -> 172.30.248.186:443.
+  50.6  26 |  s: warning: closed channel 66 got cmd=TCP_STOP_SENDING len=0
+  50.6  26 | c : SW#15:10.100.102.3:53510: uwrite: got EPIPE
+  50.6  26 | c : Accept TCP: 10.100.102.3:53532 -> 172.30.248.186:443.
+  50.7  26 | c : Accept TCP: 10.100.102.3:53534 -> 172.30.248.186:443.
+  50.7  26 |  s: warning: closed channel 68 got cmd=TCP_STOP_SENDING len=0
+  50.7  26 | c : warning: closed channel 68 got cmd=TCP_EOF len=0
+  50.7  26 | c : SW#15:10.100.102.3:53510: deleting (21 remain)
+  50.7  26 | c : SW#15:10.100.102.3:53510: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  50.7  26 | c : SW'unknown':Mux#68: deleting (20 remain)
+  50.7  26 | c : SW#8:10.100.102.3:53516: uwrite: got EPIPE
+  50.7  26 | c : warning: closed channel 69 got cmd=TCP_EOF len=0
+  50.7  26 |  s: warning: closed channel 69 got cmd=TCP_STOP_SENDING len=0
+  50.7  26 |  s: SW'unknown':Mux#65: deleting (21 remain)
+  50.7  26 |  s: SW#37:172.30.248.186:443: deleting (20 remain)
+  50.7  26 |  s: SW'unknown':Mux#67: deleting (19 remain)
+  50.7  26 |  s: SW#39:172.30.248.186:443: deleting (18 remain)
+  50.7  26 |  s: SW'unknown':Mux#68: deleting (17 remain)
+  50.7  26 |  s: SW#6:172.30.248.186:443: deleting (16 remain)
+  50.7  26 |  s: SW'unknown':Mux#69: deleting (15 remain)
+  50.7  26 |  s: SW#7:172.30.248.186:443: deleting (14 remain)
+  50.7  26 | c : SW#16:10.100.102.3:53520: uwrite: got EPIPE
+  50.8  26 | c : Accept TCP: 10.100.102.3:53540 -> 172.30.248.186:443.
+  50.8  26 |  s: warning: closed channel 70 got cmd=TCP_STOP_SENDING len=0
+  50.8  26 | c : warning: closed channel 70 got cmd=TCP_EOF len=0
+  50.8  26 | c : Accept TCP: 10.100.102.3:53544 -> 172.30.248.186:443.
+  50.9  26 | c : SW#16:10.100.102.3:53520: deleting (23 remain)
+  51.0  26 | c : SW#16:10.100.102.3:53520: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  51.0  26 | c : SW'unknown':Mux#70: deleting (22 remain)
+  51.0  26 | c : SW#11:10.100.102.3:53528: deleting (21 remain)
+  51.0  26 | c : SW#11:10.100.102.3:53528: error was: uread: [Errno 104] Connection reset by peer
+  51.0  26 | c : SW'unknown':Mux#72: deleting (20 remain)
+  51.0  26 | c : SW#17:10.100.102.3:53522: deleting (19 remain)
+  51.0  26 | c : SW#17:10.100.102.3:53522: error was: uread: [Errno 104] Connection reset by peer
+  51.0  26 | c : SW'unknown':Mux#71: deleting (18 remain)
+  51.0  26 | c : SW#19:10.100.102.3:53534: deleting (17 remain)
+  51.0  26 | c : SW#19:10.100.102.3:53534: error was: uread: [Errno 104] Connection reset by peer
+  51.0  26 | c : SW'unknown':Mux#74: deleting (16 remain)
+  51.0  26 | c : SW#14:10.100.102.3:53532: uwrite: got EPIPE
+  51.0  26 |  s: warning: closed channel 73 got cmd=TCP_STOP_SENDING len=0
+  51.0  26 | c : warning: closed channel 73 got cmd=TCP_EOF len=0
+  51.0  26 | c : warning: closed channel 75 got cmd=TCP_DATA len=31
+  51.1  26 |  s: warning: closed channel 75 got cmd=TCP_STOP_SENDING len=0
+  51.1  26 | c : warning: closed channel 75 got cmd=TCP_EOF len=0
+  51.1  26 |  s: SW#-1:172.30.248.186:443: deleting (17 remain)
+  51.1  26 |  s: SW'unknown':Mux#75: deleting (16 remain)
+  51.1  26 |  s: SW'unknown':Mux#70: deleting (15 remain)
+  51.1  26 |  s: SW#8:172.30.248.186:443: deleting (14 remain)
+  51.1  26 |  s: SW'unknown':Mux#74: deleting (13 remain)
+  51.1  26 |  s: SW#38:172.30.248.186:443: deleting (12 remain)
+  51.1  26 |  s: SW'unknown':Mux#72: deleting (11 remain)
+  51.1  26 |  s: SW#17:172.30.248.186:443: deleting (10 remain)
+  51.1  26 |  s: SW'unknown':Mux#71: deleting (9 remain)
+  51.1  26 |  s: SW#13:172.30.248.186:443: deleting (8 remain)
+  51.1  26 |  s: SW'unknown':Mux#73: deleting (7 remain)
+  51.1  26 |  s: SW#18:172.30.248.186:443: deleting (6 remain)
+  51.1  26 | c : SW#20:10.100.102.3:53544: uwrite: got EPIPE
+  52.2  26 | c : DNS request from ('10.100.102.3', 35441) to None: 33 bytes
+  52.2  19 | 2018-11-03T14:22:02+0000 [stdout#info] A query: b'www.youtube.com'
+  52.3  19 | 2018-11-03T14:22:02+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  52.3  26 | c : DNS request from ('10.100.102.3', 45519) to None: 45 bytes
+  52.4  19 | 2018-11-03T14:22:02+0000 [stdout#info] Updated query of type 1 from b'www.youtube.com.localdomain' to b'www.youtube.com'
+  52.4  19 | 2018-11-03T14:22:02+0000 [stdout#info] A query: b'www.youtube.com'
+  53.2  26 | c : DNS request from ('10.100.102.3', 54810) to None: 33 bytes
+  53.2  19 | 2018-11-03T14:22:03+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  53.2  19 | 2018-11-03T14:22:03+0000 [stdout#info] Failed to lookup b'www.youtube.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  53.2  19 | 2018-11-03T14:22:03+0000 [stdout#info] ], falling back to b'www.youtube.com.localdomain'
+  53.2  19 | 2018-11-03T14:22:03+0000 [stdout#info] A query: b'www.youtube.com'
+  53.5  26 | c : DNS request from ('10.100.102.3', 56879) to None: 35 bytes
+  53.5  19 | 2018-11-03T14:22:03+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  53.5  19 | 2018-11-03T14:22:03+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  53.5  26 | c : DNS request from ('10.100.102.3', 39221) to None: 47 bytes
+  53.5  19 | 2018-11-03T14:22:03+0000 [stdout#info] Updated query of type 1 from b'beacons2.gvt2.com.localdomain' to b'beacons2.gvt2.com'
+  53.6  19 | 2018-11-03T14:22:03+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  54.4  19 | 2018-11-03T14:22:04+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  54.4  19 | 2018-11-03T14:22:04+0000 [stdout#info] Failed to lookup b'beacons.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  54.4  19 | 2018-11-03T14:22:04+0000 [stdout#info] ], falling back to b'beacons.gvt2.com.localdomain'
+  54.5  26 | c : DNS request from ('10.100.102.3', 46259) to None: 35 bytes
+  54.5  19 | 2018-11-03T14:22:04+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  54.5  19 | 2018-11-03T14:22:04+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  54.6  19 | 2018-11-03T14:22:04+0000 [stdout#info] Failed to lookup b'www.google.co.il' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  54.6  19 | 2018-11-03T14:22:04+0000 [stdout#info] ], falling back to b'www.google.co.il.localdomain'
+  54.9  26 | c : DNS request from ('10.100.102.3', 52454) to None: 34 bytes
+  54.9  19 | 2018-11-03T14:22:05+0000 [stdout#info] A query: b'beacons.gvt2.com'
+  54.9  19 | 2018-11-03T14:22:05+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  54.9  26 | c : DNS request from ('10.100.102.3', 42811) to None: 46 bytes
+  54.9  19 | 2018-11-03T14:22:05+0000 [stdout#info] Updated query of type 1 from b'beacons.gvt2.com.localdomain' to b'beacons.gvt2.com'
+  54.9  19 | 2018-11-03T14:22:05+0000 [stdout#info] A query: b'beacons.gvt2.com'
+  55.6  26 | c : DNS request from ('10.100.102.3', 50234) to None: 35 bytes
+  55.6  19 | 2018-11-03T14:22:06+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  56.0  26 | c : DNS request from ('10.100.102.3', 45496) to None: 37 bytes
+  56.0  26 | c : DNS request from ('10.100.102.3', 45496) to None: 37 bytes
+  56.0  19 | 2018-11-03T14:22:06+0000 [stdout#info] A query: b'cups.tlv.redhat.com'
+  56.0  19 | 2018-11-03T14:22:06+0000 [stdout#info] AAAA query, sending back A instead: b'cups.tlv.redhat.com'
+  56.0  19 | 2018-11-03T14:22:06+0000 [stdout#info] A query: b'cups.tlv.redhat.com'
+  57.2  19 | 2018-11-03T14:22:07+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  57.3  19 | 2018-11-03T14:22:07+0000 [-] DNSDatagramProtocol starting on 31544
+  57.3  19 | 2018-11-03T14:22:07+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9355320>
+  57.3  19 | 2018-11-03T14:22:07+0000 [-] (UDP Port 30405 Closed)
+  57.3  19 | 2018-11-03T14:22:07+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9348d30>
+  57.4  26 | c : DNS request from ('10.100.102.3', 45519) to None: 45 bytes
+  57.4  19 | 2018-11-03T14:22:07+0000 [stdout#info] Updated query of type 1 from b'www.youtube.com.localdomain' to b'www.youtube.com'
+  57.4  19 | 2018-11-03T14:22:07+0000 [stdout#info] A query: b'www.youtube.com'
+  57.4  19 | 2018-11-03T14:22:07+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  57.4  19 | 2018-11-03T14:22:07+0000 [stdout#info] Failed to lookup b'www.youtube.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  57.4  19 | 2018-11-03T14:22:07+0000 [stdout#info] ], falling back to b'www.youtube.com.localdomain'
+  57.6  26 | c : DNS request from ('10.100.102.3', 38230) to None: 34 bytes
+  57.6  26 | c : DNS request from ('10.100.102.3', 40100) to None: 32 bytes
+  57.6  19 | 2018-11-03T14:22:08+0000 [stdout#info] A query: b'mtalk.google.com'
+  57.6  19 | 2018-11-03T14:22:08+0000 [stdout#info] A query: b'www.google.com'
+  58.2  26 | c : DNS request from ('10.100.102.3', 54810) to None: 33 bytes
+  58.2  19 | 2018-11-03T14:22:08+0000 [stdout#info] A query: b'www.youtube.com'
+  58.3  19 | 2018-11-03T14:22:08+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  58.3  26 | c : DNS request from ('10.100.102.3', 41699) to None: 45 bytes
+  58.3  19 | 2018-11-03T14:22:08+0000 [stdout#info] Updated query of type 1 from b'www.youtube.com.localdomain' to b'www.youtube.com'
+  58.3  19 | 2018-11-03T14:22:08+0000 [stdout#info] A query: b'www.youtube.com'
+  58.4  19 | 2018-11-03T14:22:08+0000 [-] DNSDatagramProtocol starting on 63439
+  58.4  19 | 2018-11-03T14:22:08+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9283240>
+  58.5  19 | 2018-11-03T14:22:08+0000 [-] (UDP Port 37266 Closed)
+  58.5  19 | 2018-11-03T14:22:08+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b93482b0>
+  58.5  19 | 2018-11-03T14:22:08+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  58.5  26 | c : DNS request from ('10.100.102.3', 39221) to None: 47 bytes
+  58.6  19 | 2018-11-03T14:22:08+0000 [stdout#info] Updated query of type 1 from b'beacons2.gvt2.com.localdomain' to b'beacons2.gvt2.com'
+  58.6  19 | 2018-11-03T14:22:08+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  58.6  19 | 2018-11-03T14:22:08+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  58.6  19 | 2018-11-03T14:22:08+0000 [stdout#info] Failed to lookup b'beacons2.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  58.6  26 | c : DNS request from ('10.100.102.3', 40461) to None: 39 bytes
+  58.6  26 | c : DNS request from ('10.100.102.3', 50566) to None: 38 bytes
+  58.6  26 | c : DNS request from ('10.100.102.3', 38324) to None: 45 bytes
+  58.6  19 | 2018-11-03T14:22:09+0000 [stdout#info] ], falling back to b'beacons2.gvt2.com.localdomain'
+  58.7  19 | 2018-11-03T14:22:09+0000 [-] DNSDatagramProtocol starting on 36778
+  58.7  19 | 2018-11-03T14:22:09+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9283518>
+  58.7  19 | 2018-11-03T14:22:09+0000 [stdout#info] Updated query of type 1 from b'wxxhenenf.localdomain' to b'wxxhenenf'
+  58.7  19 | 2018-11-03T14:22:09+0000 [stdout#info] A query: b'wxxhenenf'
+  58.7  19 | 2018-11-03T14:22:09+0000 [stdout#info] Updated query of type 1 from b'wptyjfla.localdomain' to b'wptyjfla'
+  58.7  19 | 2018-11-03T14:22:09+0000 [stdout#info] A query: b'wptyjfla'
+  58.8  19 | 2018-11-03T14:22:09+0000 [stdout#info] Updated query of type 1 from b'iemtxbcznnbhvvy.localdomain' to b'iemtxbcznnbhvvy'
+  58.8  19 | 2018-11-03T14:22:09+0000 [stdout#info] A query: b'iemtxbcznnbhvvy'
+  59.5  26 | c : DNS request from ('10.100.102.3', 46259) to None: 35 bytes
+  59.5  19 | 2018-11-03T14:22:09+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  59.5  19 | 2018-11-03T14:22:09+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  59.5  26 | c : DNS request from ('10.100.102.3', 42065) to None: 47 bytes
+  59.5  19 | 2018-11-03T14:22:09+0000 [stdout#info] Updated query of type 1 from b'beacons2.gvt2.com.localdomain' to b'beacons2.gvt2.com'
+  59.5  19 | 2018-11-03T14:22:09+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  59.6  19 | 2018-11-03T14:22:10+0000 [-] DNSDatagramProtocol starting on 63050
+  59.6  19 | 2018-11-03T14:22:10+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9290a58>
+  59.6  19 | 2018-11-03T14:22:10+0000 [-] (UDP Port 36778 Closed)
+  59.6  19 | 2018-11-03T14:22:10+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9283518>
+  59.9  19 | 2018-11-03T14:22:10+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  59.9  26 | c : DNS request from ('10.100.102.3', 42811) to None: 46 bytes
+  59.9  19 | 2018-11-03T14:22:10+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  59.9  19 | 2018-11-03T14:22:10+0000 [stdout#info] Failed to lookup b'beacons.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  60.0  19 | 2018-11-03T14:22:10+0000 [stdout#info] ], falling back to b'beacons.gvt2.com.localdomain'
+  60.0  19 | 2018-11-03T14:22:10+0000 [stdout#info] Updated query of type 1 from b'beacons.gvt2.com.localdomain' to b'beacons.gvt2.com'
+  60.0  19 | 2018-11-03T14:22:10+0000 [stdout#info] A query: b'beacons.gvt2.com'
+  60.6  26 | c : DNS request from ('10.100.102.3', 50234) to None: 35 bytes
+  60.6  19 | 2018-11-03T14:22:11+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  60.6  26 | c : DNS request from ('10.100.102.3', 51750) to None: 47 bytes
+  60.6  19 | 2018-11-03T14:22:11+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  60.6  19 | 2018-11-03T14:22:11+0000 [stdout#info] Updated query of type 1 from b'beacons2.gvt2.com.localdomain' to b'beacons2.gvt2.com'
+  60.6  19 | 2018-11-03T14:22:11+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  60.7 TEL | [49] Running: sudo -n echo -n
+  61.0  26 | c : DNS request from ('10.100.102.3', 45496) to None: 37 bytes
+  61.0  26 | c : DNS request from ('10.100.102.3', 45496) to None: 37 bytes
+  61.1  19 | 2018-11-03T14:22:11+0000 [stdout#info] A query: b'cups.tlv.redhat.com'
+  61.1  19 | 2018-11-03T14:22:11+0000 [stdout#info] AAAA query, sending back A instead: b'cups.tlv.redhat.com'
+  61.1  19 | 2018-11-03T14:22:11+0000 [stdout#info] A query: b'cups.tlv.redhat.com'
+  61.2  19 | 2018-11-03T14:22:11+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  61.2  19 | 2018-11-03T14:22:11+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  61.3  26 | c : DNS request from ('10.100.102.3', 59684) to None: 49 bytes
+  61.3  26 | c : DNS request from ('10.100.102.3', 59684) to None: 49 bytes
+  61.3  19 | 2018-11-03T14:22:11+0000 [stdout#info] Updated query of type 1 from b'cups.tlv.redhat.com.localdomain' to b'cups.tlv.redhat.com'
+  61.4  19 | 2018-11-03T14:22:11+0000 [stdout#info] A query: b'cups.tlv.redhat.com'
+  61.4  19 | 2018-11-03T14:22:11+0000 [stdout#info] Updated query of type 28 from b'cups.tlv.redhat.com.localdomain' to b'cups.tlv.redhat.com'
+  61.4  19 | 2018-11-03T14:22:11+0000 [stdout#info] AAAA query, sending back A instead: b'cups.tlv.redhat.com'
+  61.4  19 | 2018-11-03T14:22:11+0000 [stdout#info] A query: b'cups.tlv.redhat.com'
+  61.6  26 | c : DNS request from ('10.100.102.3', 52941) to None: 35 bytes
+  61.6  19 | 2018-11-03T14:22:12+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  62.4  19 | 2018-11-03T14:22:12+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  62.4  19 | 2018-11-03T14:22:12+0000 [stdout#info] Failed to lookup b'www.youtube.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  62.4  19 | 2018-11-03T14:22:12+0000 [stdout#info] ], falling back to b'www.youtube.com.localdomain'
+  62.6  26 | c : DNS request from ('10.100.102.3', 38230) to None: 34 bytes
+  62.6  26 | c : DNS request from ('10.100.102.3', 40100) to None: 32 bytes
+  62.6  19 | 2018-11-03T14:22:13+0000 [stdout#info] A query: b'mtalk.google.com'
+  62.6  19 | 2018-11-03T14:22:13+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  62.6  19 | 2018-11-03T14:22:13+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  62.6  26 | c : DNS request from ('10.100.102.3', 43918) to None: 46 bytes
+  62.6  26 | c : DNS request from ('10.100.102.3', 43044) to None: 44 bytes
+  62.6  19 | 2018-11-03T14:22:13+0000 [stdout#info] A query: b'www.google.com'
+  62.7  19 | 2018-11-03T14:22:13+0000 [-] DNSDatagramProtocol starting on 3540
+  62.7  19 | 2018-11-03T14:22:13+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b92776d8>
+  62.7  19 | 2018-11-03T14:22:13+0000 [-] (UDP Port 63050 Closed)
+  62.7  19 | 2018-11-03T14:22:13+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9290a58>
+  62.7  19 | 2018-11-03T14:22:13+0000 [stdout#info] Updated query of type 1 from b'mtalk.google.com.localdomain' to b'mtalk.google.com'
+  62.7  19 | 2018-11-03T14:22:13+0000 [stdout#info] A query: b'mtalk.google.com'
+  62.8  19 | 2018-11-03T14:22:13+0000 [stdout#info] Updated query of type 1 from b'www.google.com.localdomain' to b'www.google.com'
+  62.8  19 | 2018-11-03T14:22:13+0000 [stdout#info] A query: b'www.google.com'
+  63.2  19 | 2018-11-03T14:22:13+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  63.3  26 | c : DNS request from ('10.100.102.3', 41699) to None: 45 bytes
+  63.3  19 | 2018-11-03T14:22:13+0000 [stdout#info] Updated query of type 1 from b'www.youtube.com.localdomain' to b'www.youtube.com'
+  63.3  19 | 2018-11-03T14:22:13+0000 [stdout#info] A query: b'www.youtube.com'
+  63.3  19 | 2018-11-03T14:22:13+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  63.3  19 | 2018-11-03T14:22:13+0000 [stdout#info] Failed to lookup b'www.youtube.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  63.3  19 | 2018-11-03T14:22:13+0000 [stdout#info] ], falling back to b'www.youtube.com.localdomain'
+  63.6  19 | 2018-11-03T14:22:13+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  63.6  19 | 2018-11-03T14:22:13+0000 [stdout#info] Failed to lookup b'beacons2.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  63.6  19 | 2018-11-03T14:22:13+0000 [stdout#info] ], falling back to b'beacons2.gvt2.com.localdomain'
+  63.6  26 | c : DNS request from ('10.100.102.3', 54326) to None: 34 bytes
+  63.6  26 | c : DNS request from ('10.100.102.3', 36957) to None: 32 bytes
+  63.6  19 | 2018-11-03T14:22:14+0000 [stdout#info] A query: b'mtalk.google.com'
+  63.6  19 | 2018-11-03T14:22:14+0000 [stdout#info] A query: b'www.google.com'
+  63.6  26 | c : DNS request from ('10.100.102.3', 40461) to None: 39 bytes
+  63.6  26 | c : DNS request from ('10.100.102.3', 50566) to None: 38 bytes
+  63.6  26 | c : DNS request from ('10.100.102.3', 38324) to None: 45 bytes
+  63.6  19 | 2018-11-03T14:22:14+0000 [stdout#info] Updated query of type 1 from b'wxxhenenf.localdomain' to b'wxxhenenf'
+  63.6  19 | 2018-11-03T14:22:14+0000 [stdout#info] A query: b'wxxhenenf'
+  63.6  19 | 2018-11-03T14:22:14+0000 [stdout#info] Updated query of type 1 from b'wptyjfla.localdomain' to b'wptyjfla'
+  63.6  19 | 2018-11-03T14:22:14+0000 [stdout#info] A query: b'wptyjfla'
+  63.7  19 | 2018-11-03T14:22:14+0000 [stdout#info] Updated query of type 1 from b'iemtxbcznnbhvvy.localdomain' to b'iemtxbcznnbhvvy'
+  63.7  19 | 2018-11-03T14:22:14+0000 [stdout#info] A query: b'iemtxbcznnbhvvy'
+  63.8  19 | 2018-11-03T14:22:14+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  63.8  19 | 2018-11-03T14:22:14+0000 [stdout#info] Failed to lookup b'wxxhenenf' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  63.8  19 | 2018-11-03T14:22:14+0000 [stdout#info] ], falling back to b'wxxhenenf.localdomain'
+  63.8  19 | 2018-11-03T14:22:14+0000 [-] DNSDatagramProtocol starting on 23103
+  63.8  19 | 2018-11-03T14:22:14+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9165b00>
+  63.8  19 | 2018-11-03T14:22:14+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  63.9  19 | 2018-11-03T14:22:14+0000 [stdout#info] Failed to lookup b'wptyjfla' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  63.9  19 | 2018-11-03T14:22:14+0000 [stdout#info] ], falling back to b'wptyjfla.localdomain'
+  63.9  19 | 2018-11-03T14:22:14+0000 [-] DNSDatagramProtocol starting on 33360
+  63.9  19 | 2018-11-03T14:22:14+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9283748>
+  63.9  19 | 2018-11-03T14:22:14+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  63.9  19 | 2018-11-03T14:22:14+0000 [stdout#info] Failed to lookup b'iemtxbcznnbhvvy' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  63.9  19 | 2018-11-03T14:22:14+0000 [stdout#info] ], falling back to b'iemtxbcznnbhvvy.localdomain'
+  63.9  19 | 2018-11-03T14:22:14+0000 [-] DNSDatagramProtocol starting on 42165
+  63.9  19 | 2018-11-03T14:22:14+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9283a90>
+  64.5  26 | c : DNS request from ('10.100.102.3', 42065) to None: 47 bytes
+  64.5  19 | 2018-11-03T14:22:14+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  64.6  19 | 2018-11-03T14:22:14+0000 [stdout#info] Updated query of type 1 from b'beacons2.gvt2.com.localdomain' to b'beacons2.gvt2.com'
+  64.6  19 | 2018-11-03T14:22:14+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  64.6  19 | 2018-11-03T14:22:14+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  64.6  26 | c : DNS request from ('10.100.102.3', 56150) to None: 39 bytes
+  64.6  26 | c : DNS request from ('10.100.102.3', 58214) to None: 38 bytes
+  64.6  26 | c : DNS request from ('10.100.102.3', 47894) to None: 45 bytes
+  64.6  19 | 2018-11-03T14:22:15+0000 [stdout#info] Failed to lookup b'beacons2.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  64.6  19 | 2018-11-03T14:22:15+0000 [stdout#info] ], falling back to b'beacons2.gvt2.com.localdomain'
+  64.7  19 | 2018-11-03T14:22:15+0000 [stdout#info] Updated query of type 1 from b'wxxhenenf.localdomain' to b'wxxhenenf'
+  64.7  19 | 2018-11-03T14:22:15+0000 [stdout#info] A query: b'wxxhenenf'
+  64.7  19 | 2018-11-03T14:22:15+0000 [stdout#info] Updated query of type 1 from b'wptyjfla.localdomain' to b'wptyjfla'
+  64.7  19 | 2018-11-03T14:22:15+0000 [stdout#info] A query: b'wptyjfla'
+  64.7  19 | 2018-11-03T14:22:15+0000 [stdout#info] Updated query of type 1 from b'iemtxbcznnbhvvy.localdomain' to b'iemtxbcznnbhvvy'
+  64.7  19 | 2018-11-03T14:22:15+0000 [stdout#info] A query: b'iemtxbcznnbhvvy'
+  64.8  19 | 2018-11-03T14:22:15+0000 [-] DNSDatagramProtocol starting on 49293
+  64.9  19 | 2018-11-03T14:22:15+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916f438>
+  64.9  19 | 2018-11-03T14:22:15+0000 [-] (UDP Port 23103 Closed)
+  64.9  19 | 2018-11-03T14:22:15+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9165b00>
+  64.9  19 | 2018-11-03T14:22:15+0000 [-] DNSDatagramProtocol starting on 63244
+  64.9  19 | 2018-11-03T14:22:15+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9165b00>
+  64.9  19 | 2018-11-03T14:22:15+0000 [-] (UDP Port 33360 Closed)
+  64.9  19 | 2018-11-03T14:22:15+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9283748>
+  64.9  19 | 2018-11-03T14:22:15+0000 [-] DNSDatagramProtocol starting on 35359
+  64.9  19 | 2018-11-03T14:22:15+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9422860>
+  64.9  19 | 2018-11-03T14:22:15+0000 [-] (UDP Port 42165 Closed)
+  64.9  19 | 2018-11-03T14:22:15+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9283a90>
+  65.0  19 | 2018-11-03T14:22:15+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  65.0  19 | 2018-11-03T14:22:15+0000 [stdout#info] Failed to lookup b'beacons.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  65.0  19 | 2018-11-03T14:22:15+0000 [stdout#info] ], falling back to b'beacons.gvt2.com.localdomain'
+  65.6  26 | c : DNS request from ('10.100.102.3', 51750) to None: 47 bytes
+  65.6  19 | 2018-11-03T14:22:16+0000 [stdout#info] Updated query of type 1 from b'beacons2.gvt2.com.localdomain' to b'beacons2.gvt2.com'
+  65.6  19 | 2018-11-03T14:22:16+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  65.6  19 | 2018-11-03T14:22:16+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  65.7  19 | 2018-11-03T14:22:16+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  65.7  19 | 2018-11-03T14:22:16+0000 [stdout#info] Failed to lookup b'beacons2.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  65.8  19 | 2018-11-03T14:22:16+0000 [stdout#info] ], falling back to b'beacons2.gvt2.com.localdomain'
+  66.2  19 | 2018-11-03T14:22:16+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  66.2  19 | 2018-11-03T14:22:16+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  66.3  26 | c : DNS request from ('10.100.102.3', 59684) to None: 49 bytes
+  66.3  26 | c : DNS request from ('10.100.102.3', 59684) to None: 49 bytes
+  66.3  19 | 2018-11-03T14:22:16+0000 [stdout#info] Updated query of type 1 from b'cups.tlv.redhat.com.localdomain' to b'cups.tlv.redhat.com'
+  66.3  19 | 2018-11-03T14:22:16+0000 [stdout#info] A query: b'cups.tlv.redhat.com'
+  66.4  19 | 2018-11-03T14:22:16+0000 [stdout#info] Updated query of type 28 from b'cups.tlv.redhat.com.localdomain' to b'cups.tlv.redhat.com'
+  66.4  19 | 2018-11-03T14:22:16+0000 [stdout#info] AAAA query, sending back A instead: b'cups.tlv.redhat.com'
+  66.4  19 | 2018-11-03T14:22:16+0000 [stdout#info] A query: b'cups.tlv.redhat.com'
+  66.4  19 | 2018-11-03T14:22:16+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  66.4  19 | 2018-11-03T14:22:16+0000 [stdout#info] Failed to lookup b'cups.tlv.redhat.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  66.4  19 | 2018-11-03T14:22:16+0000 [stdout#info] ], falling back to b'cups.tlv.redhat.com.localdomain'
+  66.4  19 | 2018-11-03T14:22:16+0000 [-] DNSDatagramProtocol starting on 35281
+  66.4  19 | 2018-11-03T14:22:16+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916f828>
+  66.4  19 | 2018-11-03T14:22:16+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  66.5  19 | 2018-11-03T14:22:16+0000 [stdout#info] Failed to lookup b'cups.tlv.redhat.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  66.5  19 | 2018-11-03T14:22:16+0000 [stdout#info] ], falling back to b'cups.tlv.redhat.com.localdomain'
+  66.5  19 | 2018-11-03T14:22:16+0000 [-] DNSDatagramProtocol starting on 1360
+  66.5  19 | 2018-11-03T14:22:16+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9303c50>
+  66.6  26 | c : DNS request from ('10.100.102.3', 52941) to None: 35 bytes
+  66.6  19 | 2018-11-03T14:22:17+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  66.6  19 | 2018-11-03T14:22:17+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  66.6  26 | c : DNS request from ('10.100.102.3', 46650) to None: 47 bytes
+  66.6  19 | 2018-11-03T14:22:17+0000 [stdout#info] Updated query of type 1 from b'beacons2.gvt2.com.localdomain' to b'beacons2.gvt2.com'
+  66.6  19 | 2018-11-03T14:22:17+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  67.4  19 | 2018-11-03T14:22:17+0000 [-] DNSDatagramProtocol starting on 2087
+  67.4  19 | 2018-11-03T14:22:17+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916fba8>
+  67.4  19 | 2018-11-03T14:22:17+0000 [-] (UDP Port 35281 Closed)
+  67.4  19 | 2018-11-03T14:22:17+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916f828>
+  67.5  19 | 2018-11-03T14:22:17+0000 [-] DNSDatagramProtocol starting on 49956
+  67.5  19 | 2018-11-03T14:22:17+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916f898>
+  67.5  19 | 2018-11-03T14:22:17+0000 [-] (UDP Port 1360 Closed)
+  67.5  19 | 2018-11-03T14:22:17+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9303c50>
+  67.6  26 | c : DNS request from ('10.100.102.3', 43918) to None: 46 bytes
+  67.6  26 | c : DNS request from ('10.100.102.3', 43044) to None: 44 bytes
+  67.7  19 | 2018-11-03T14:22:18+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  67.7  19 | 2018-11-03T14:22:18+0000 [stdout#info] Updated query of type 1 from b'mtalk.google.com.localdomain' to b'mtalk.google.com'
+  67.7  19 | 2018-11-03T14:22:18+0000 [stdout#info] A query: b'mtalk.google.com'
+  67.7  19 | 2018-11-03T14:22:18+0000 [stdout#info] Updated query of type 1 from b'www.google.com.localdomain' to b'www.google.com'
+  67.7  19 | 2018-11-03T14:22:18+0000 [stdout#info] A query: b'www.google.com'
+  67.7  19 | 2018-11-03T14:22:18+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  67.8  19 | 2018-11-03T14:22:18+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  67.8  19 | 2018-11-03T14:22:18+0000 [stdout#info] Failed to lookup b'mtalk.google.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  67.8  19 | 2018-11-03T14:22:18+0000 [stdout#info] ], falling back to b'mtalk.google.com.localdomain'
+  67.8  19 | 2018-11-03T14:22:18+0000 [-] DNSDatagramProtocol starting on 31255
+  67.8  19 | 2018-11-03T14:22:18+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9277780>
+  67.8  19 | 2018-11-03T14:22:18+0000 [-] DNSDatagramProtocol starting on 39104
+  67.9  19 | 2018-11-03T14:22:18+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b92a77f0>
+  67.9  19 | 2018-11-03T14:22:18+0000 [-] (UDP Port 49293 Closed)
+  67.9  19 | 2018-11-03T14:22:18+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916f438>
+  67.9  19 | 2018-11-03T14:22:18+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  68.0  19 | 2018-11-03T14:22:18+0000 [stdout#info] Failed to lookup b'www.google.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  68.0  19 | 2018-11-03T14:22:18+0000 [stdout#info] ], falling back to b'www.google.com.localdomain'
+  68.0  19 | 2018-11-03T14:22:18+0000 [-] DNSDatagramProtocol starting on 16253
+  68.0  19 | 2018-11-03T14:22:18+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916f438>
+  68.0  19 | 2018-11-03T14:22:18+0000 [-] DNSDatagramProtocol starting on 37730
+  68.0  19 | 2018-11-03T14:22:18+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b92a7ac8>
+  68.0  19 | 2018-11-03T14:22:18+0000 [-] (UDP Port 63244 Closed)
+  68.0  19 | 2018-11-03T14:22:18+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9165b00>
+  68.0  19 | 2018-11-03T14:22:18+0000 [-] DNSDatagramProtocol starting on 5672
+  68.0  19 | 2018-11-03T14:22:18+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9290b00>
+  68.1  19 | 2018-11-03T14:22:18+0000 [-] (UDP Port 35359 Closed)
+  68.1  19 | 2018-11-03T14:22:18+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9422860>
+  68.3  19 | 2018-11-03T14:22:18+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  68.3  19 | 2018-11-03T14:22:18+0000 [stdout#info] Failed to lookup b'www.youtube.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  68.3  19 | 2018-11-03T14:22:18+0000 [stdout#info] ], falling back to b'www.youtube.com.localdomain'
+  68.6  26 | c : DNS request from ('10.100.102.3', 54326) to None: 34 bytes
+  68.6  26 | c : DNS request from ('10.100.102.3', 36957) to None: 32 bytes
+  68.6  19 | 2018-11-03T14:22:19+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  68.6  26 | c : DNS request from ('10.100.102.3', 51857) to None: 27 bytes
+  68.6  26 | c : DNS request from ('10.100.102.3', 50479) to None: 26 bytes
+  68.6  26 | c : DNS request from ('10.100.102.3', 52119) to None: 33 bytes
+  68.6  19 | 2018-11-03T14:22:19+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  68.6  26 | c : DNS request from ('10.100.102.3', 55352) to None: 46 bytes
+  68.6  19 | 2018-11-03T14:22:19+0000 [stdout#info] A query: b'mtalk.google.com'
+  68.6  26 | c : DNS request from ('10.100.102.3', 45788) to None: 44 bytes
+  68.6  19 | 2018-11-03T14:22:19+0000 [stdout#info] A query: b'www.google.com'
+  68.7  19 | 2018-11-03T14:22:19+0000 [stdout#info] A query: b'wxxhenenf'
+  68.7  19 | 2018-11-03T14:22:19+0000 [stdout#info] A query: b'wptyjfla'
+  68.8  19 | 2018-11-03T14:22:19+0000 [stdout#info] A query: b'iemtxbcznnbhvvy'
+  68.9  19 | 2018-11-03T14:22:19+0000 [stdout#info] Updated query of type 1 from b'mtalk.google.com.localdomain' to b'mtalk.google.com'
+  68.9  19 | 2018-11-03T14:22:19+0000 [stdout#info] A query: b'mtalk.google.com'
+  68.9  19 | 2018-11-03T14:22:19+0000 [stdout#info] Updated query of type 1 from b'www.google.com.localdomain' to b'www.google.com'
+  68.9  19 | 2018-11-03T14:22:19+0000 [stdout#info] A query: b'www.google.com'
+  69.0  19 | 2018-11-03T14:22:19+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  69.0  19 | 2018-11-03T14:22:19+0000 [stdout#info] Failed to lookup b'wxxhenenf' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  69.0  19 | 2018-11-03T14:22:19+0000 [stdout#info] ], falling back to b'wxxhenenf.localdomain'
+  69.0  19 | 2018-11-03T14:22:19+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  69.0  19 | 2018-11-03T14:22:19+0000 [stdout#info] Failed to lookup b'wptyjfla' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  69.0  19 | 2018-11-03T14:22:19+0000 [stdout#info] ], falling back to b'wptyjfla.localdomain'
+  69.0  19 | 2018-11-03T14:22:19+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  69.0  19 | 2018-11-03T14:22:19+0000 [stdout#info] Failed to lookup b'iemtxbcznnbhvvy' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  69.0  19 | 2018-11-03T14:22:19+0000 [stdout#info] ], falling back to b'iemtxbcznnbhvvy.localdomain'
+  69.0  19 | 2018-11-03T14:22:19+0000 [-] DNSDatagramProtocol starting on 25811
+  69.0  19 | 2018-11-03T14:22:19+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b933d0f0>
+  69.0  19 | 2018-11-03T14:22:19+0000 [-] DNSDatagramProtocol starting on 21663
+  69.0  19 | 2018-11-03T14:22:19+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9165400>
+  69.1  19 | 2018-11-03T14:22:19+0000 [-] (UDP Port 31255 Closed)
+  69.1  19 | 2018-11-03T14:22:19+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9277780>
+  69.1  19 | 2018-11-03T14:22:19+0000 [-] (UDP Port 16253 Closed)
+  69.1  19 | 2018-11-03T14:22:19+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916f438>
+  69.6  26 | c : DNS request from ('10.100.102.3', 47894) to None: 45 bytes
+  69.6  26 | c : DNS request from ('10.100.102.3', 56150) to None: 39 bytes
+  69.6  26 | c : DNS request from ('10.100.102.3', 58214) to None: 38 bytes
+  69.6  19 | 2018-11-03T14:22:20+0000 [stdout#info] Updated query of type 1 from b'iemtxbcznnbhvvy.localdomain' to b'iemtxbcznnbhvvy'
+  69.6  19 | 2018-11-03T14:22:20+0000 [stdout#info] A query: b'iemtxbcznnbhvvy'
+  69.6  19 | 2018-11-03T14:22:20+0000 [stdout#info] Updated query of type 1 from b'wxxhenenf.localdomain' to b'wxxhenenf'
+  69.6  19 | 2018-11-03T14:22:20+0000 [stdout#info] A query: b'wxxhenenf'
+  69.6  19 | 2018-11-03T14:22:20+0000 [stdout#info] Updated query of type 1 from b'wptyjfla.localdomain' to b'wptyjfla'
+  69.6  19 | 2018-11-03T14:22:20+0000 [stdout#info] A query: b'wptyjfla'
+  69.7  19 | 2018-11-03T14:22:20+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  69.8  19 | 2018-11-03T14:22:20+0000 [stdout#info] Failed to lookup b'wxxhenenf' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  69.8  19 | 2018-11-03T14:22:20+0000 [stdout#info] ], falling back to b'wxxhenenf.localdomain'
+  69.8  19 | 2018-11-03T14:22:20+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  69.8  19 | 2018-11-03T14:22:20+0000 [stdout#info] Failed to lookup b'wptyjfla' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  69.8  19 | 2018-11-03T14:22:20+0000 [stdout#info] ], falling back to b'wptyjfla.localdomain'
+  69.8  19 | 2018-11-03T14:22:20+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  69.8  19 | 2018-11-03T14:22:20+0000 [stdout#info] Failed to lookup b'iemtxbcznnbhvvy' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  69.8  19 | 2018-11-03T14:22:20+0000 [stdout#info] ], falling back to b'iemtxbcznnbhvvy.localdomain'
+  69.8  19 | 2018-11-03T14:22:20+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  69.8  19 | 2018-11-03T14:22:20+0000 [stdout#info] Failed to lookup b'beacons2.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  69.8  19 | 2018-11-03T14:22:20+0000 [stdout#info] ], falling back to b'beacons2.gvt2.com.localdomain'
+  70.4  19 | 2018-11-03T14:22:20+0000 [-] DNSDatagramProtocol starting on 28954
+  70.4  19 | 2018-11-03T14:22:20+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9283fd0>
+  70.4  19 | 2018-11-03T14:22:20+0000 [-] (UDP Port 2087 Closed)
+  70.4  19 | 2018-11-03T14:22:20+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916fba8>
+  70.5  19 | 2018-11-03T14:22:20+0000 [-] DNSDatagramProtocol starting on 38923
+  70.5  19 | 2018-11-03T14:22:20+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916fbe0>
+  70.5  19 | 2018-11-03T14:22:20+0000 [-] (UDP Port 49956 Closed)
+  70.5  19 | 2018-11-03T14:22:20+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916f898>
+  70.6  26 | c : DNS request from ('10.100.102.3', 55999) to None: 33 bytes
+  70.7  19 | 2018-11-03T14:22:21+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  70.7  19 | 2018-11-03T14:22:21+0000 [stdout#info] Failed to lookup b'beacons2.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  70.7  19 | 2018-11-03T14:22:21+0000 [stdout#info] ], falling back to b'beacons2.gvt2.com.localdomain'
+  70.7  19 | 2018-11-03T14:22:21+0000 [stdout#info] A query: b'www.youtube.com'
+  71.4  19 | 2018-11-03T14:22:21+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  71.4  19 | 2018-11-03T14:22:21+0000 [stdout#info] Failed to lookup b'cups.tlv.redhat.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  71.5  19 | 2018-11-03T14:22:21+0000 [stdout#info] ], falling back to b'cups.tlv.redhat.com.localdomain'
+  71.5  19 | 2018-11-03T14:22:21+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  71.5  19 | 2018-11-03T14:22:21+0000 [stdout#info] Failed to lookup b'cups.tlv.redhat.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  71.5  19 | 2018-11-03T14:22:21+0000 [stdout#info] ], falling back to b'cups.tlv.redhat.com.localdomain'
+  71.6  19 | 2018-11-03T14:22:22+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  71.6  26 | c : DNS request from ('10.100.102.3', 46650) to None: 47 bytes
+  71.6  19 | 2018-11-03T14:22:22+0000 [stdout#info] Updated query of type 1 from b'beacons2.gvt2.com.localdomain' to b'beacons2.gvt2.com'
+  71.6  19 | 2018-11-03T14:22:22+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  71.6  19 | 2018-11-03T14:22:22+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  71.6  19 | 2018-11-03T14:22:22+0000 [stdout#info] Failed to lookup b'beacons2.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  71.6  19 | 2018-11-03T14:22:22+0000 [stdout#info] ], falling back to b'beacons2.gvt2.com.localdomain'
+  72.0  19 | 2018-11-03T14:22:22+0000 [-] DNSDatagramProtocol starting on 60254
+  72.0  19 | 2018-11-03T14:22:22+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916f9e8>
+  72.0  19 | 2018-11-03T14:22:22+0000 [-] (UDP Port 25811 Closed)
+  72.0  19 | 2018-11-03T14:22:22+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b933d0f0>
+  72.1  19 | 2018-11-03T14:22:22+0000 [-] DNSDatagramProtocol starting on 39528
+  72.1  19 | 2018-11-03T14:22:22+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b933d0f0>
+  72.2  19 | 2018-11-03T14:22:22+0000 [-] (UDP Port 21663 Closed)
+  72.2  19 | 2018-11-03T14:22:22+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9165400>
+  72.7  26 | c : DNS request from ('10.100.102.3', 36551) to None: 35 bytes
+  72.7  26 | c : DNS request from ('10.100.102.3', 50002) to None: 32 bytes
+  72.7  19 | 2018-11-03T14:22:23+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  72.7  19 | 2018-11-03T14:22:23+0000 [stdout#info] A query: b'www.google.com'
+  72.8  19 | 2018-11-03T14:22:23+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  72.8  19 | 2018-11-03T14:22:23+0000 [stdout#info] Failed to lookup b'mtalk.google.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  72.8  19 | 2018-11-03T14:22:23+0000 [stdout#info] ], falling back to b'mtalk.google.com.localdomain'
+  72.8  19 | 2018-11-03T14:22:23+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  72.8  19 | 2018-11-03T14:22:23+0000 [stdout#info] Failed to lookup b'www.google.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  72.8  19 | 2018-11-03T14:22:23+0000 [stdout#info] ], falling back to b'www.google.com.localdomain'
+  73.6  26 | c : DNS request from ('10.100.102.3', 50479) to None: 26 bytes
+  73.6  26 | c : DNS request from ('10.100.102.3', 51857) to None: 27 bytes
+  73.6  26 | c : DNS request from ('10.100.102.3', 52119) to None: 33 bytes
+  73.6  19 | 2018-11-03T14:22:24+0000 [stdout#info] A query: b'wptyjfla'
+  73.6  19 | 2018-11-03T14:22:24+0000 [stdout#info] A query: b'wxxhenenf'
+  73.6  19 | 2018-11-03T14:22:24+0000 [stdout#info] A query: b'iemtxbcznnbhvvy'
+  73.7  26 | c : DNS request from ('10.100.102.3', 45788) to None: 44 bytes
+  73.7  26 | c : DNS request from ('10.100.102.3', 55352) to None: 46 bytes
+  73.7  19 | 2018-11-03T14:22:24+0000 [-] DNSDatagramProtocol starting on 42155
+  73.7  19 | 2018-11-03T14:22:24+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9172e10>
+  73.7  19 | 2018-11-03T14:22:24+0000 [-] (UDP Port 3540 Closed)
+  73.7  19 | 2018-11-03T14:22:24+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b92776d8>
+  73.7  19 | 2018-11-03T14:22:24+0000 [stdout#info] Updated query of type 1 from b'www.google.com.localdomain' to b'www.google.com'
+  73.8  19 | 2018-11-03T14:22:24+0000 [stdout#info] A query: b'www.google.com'
+  73.9  19 | 2018-11-03T14:22:24+0000 [stdout#info] Updated query of type 1 from b'mtalk.google.com.localdomain' to b'mtalk.google.com'
+  73.9  19 | 2018-11-03T14:22:24+0000 [stdout#info] A query: b'mtalk.google.com'
+  73.9  19 | 2018-11-03T14:22:24+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  74.0  19 | 2018-11-03T14:22:24+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  74.0  19 | 2018-11-03T14:22:24+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  74.0  19 | 2018-11-03T14:22:24+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  74.0  19 | 2018-11-03T14:22:24+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  74.1  19 | 2018-11-03T14:22:24+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  74.1  19 | 2018-11-03T14:22:24+0000 [stdout#info] Failed to lookup b'mtalk.google.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  74.1  19 | 2018-11-03T14:22:24+0000 [stdout#info] ], falling back to b'mtalk.google.com.localdomain'
+  74.1  19 | 2018-11-03T14:22:24+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  74.1  19 | 2018-11-03T14:22:24+0000 [stdout#info] Failed to lookup b'www.google.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  74.1  19 | 2018-11-03T14:22:24+0000 [stdout#info] ], falling back to b'www.google.com.localdomain'
+  74.6  26 | c : DNS request from ('10.100.102.3', 41064) to None: 26 bytes
+  74.6  26 | c : DNS request from ('10.100.102.3', 48837) to None: 33 bytes
+  74.6  26 | c : DNS request from ('10.100.102.3', 36850) to None: 27 bytes
+  74.6  19 | 2018-11-03T14:22:25+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  74.6  19 | 2018-11-03T14:22:25+0000 [stdout#info] Failed to lookup b'iemtxbcznnbhvvy' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  74.6  19 | 2018-11-03T14:22:25+0000 [stdout#info] ], falling back to b'iemtxbcznnbhvvy.localdomain'
+  74.6  19 | 2018-11-03T14:22:25+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  74.6  19 | 2018-11-03T14:22:25+0000 [stdout#info] Failed to lookup b'wptyjfla' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  74.6  19 | 2018-11-03T14:22:25+0000 [stdout#info] ], falling back to b'wptyjfla.localdomain'
+  74.6  19 | 2018-11-03T14:22:25+0000 [stdout#info] A query: b'wptyjfla'
+  74.6  19 | 2018-11-03T14:22:25+0000 [stdout#info] A query: b'iemtxbcznnbhvvy'
+  74.7  19 | 2018-11-03T14:22:25+0000 [stdout#info] A query: b'wxxhenenf'
+  74.7  19 | 2018-11-03T14:22:25+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  74.7  19 | 2018-11-03T14:22:25+0000 [stdout#info] Failed to lookup b'wxxhenenf' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  74.7  19 | 2018-11-03T14:22:25+0000 [stdout#info] ], falling back to b'wxxhenenf.localdomain'
+  75.7  26 | c : DNS request from ('10.100.102.3', 55999) to None: 33 bytes
+  75.7  19 | 2018-11-03T14:22:26+0000 [stdout#info] A query: b'www.youtube.com'
+  75.7  19 | 2018-11-03T14:22:26+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  75.7  26 | c : DNS request from ('10.100.102.3', 53714) to None: 45 bytes
+  75.7  19 | 2018-11-03T14:22:26+0000 [stdout#info] Updated query of type 1 from b'www.youtube.com.localdomain' to b'www.youtube.com'
+  75.7  19 | 2018-11-03T14:22:26+0000 [stdout#info] A query: b'www.youtube.com'
+  76.6  26 | c : DNS request from ('10.100.102.3', 44871) to None: 35 bytes
+  76.6  19 | 2018-11-03T14:22:26+0000 [stdout#info] A query: b'beacons3.gvt2.com'
+  76.6  26 | c : DNS request from ('10.100.102.3', 41667) to None: 33 bytes
+  76.6  19 | 2018-11-03T14:22:27+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  76.7  19 | 2018-11-03T14:22:27+0000 [stdout#info] Failed to lookup b'beacons2.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  76.7  19 | 2018-11-03T14:22:27+0000 [stdout#info] ], falling back to b'beacons2.gvt2.com.localdomain'
+  76.7  19 | 2018-11-03T14:22:27+0000 [stdout#info] A query: b'www.youtube.com'
+  77.0 TEL | (proxy checking local liveness)
+  77.0  19 | 2018-11-03T14:22:27+0000 [Poll#info] Checkpoint
+  77.7  26 | c : DNS request from ('10.100.102.3', 36551) to None: 35 bytes
+  77.7  19 | 2018-11-03T14:22:28+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  77.7  26 | c : DNS request from ('10.100.102.3', 50002) to None: 32 bytes
+  77.7  19 | 2018-11-03T14:22:28+0000 [stdout#info] A query: b'www.google.com'
+  77.7  19 | 2018-11-03T14:22:28+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  77.7  26 | c : DNS request from ('10.100.102.3', 57122) to None: 47 bytes
+  77.7  19 | 2018-11-03T14:22:28+0000 [stdout#info] Updated query of type 1 from b'beacons2.gvt2.com.localdomain' to b'beacons2.gvt2.com'
+  77.7  19 | 2018-11-03T14:22:28+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  77.7  19 | 2018-11-03T14:22:28+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  77.7  26 | c : DNS request from ('10.100.102.3', 46389) to None: 44 bytes
+  77.8  19 | 2018-11-03T14:22:28+0000 [stdout#info] Updated query of type 1 from b'www.google.com.localdomain' to b'www.google.com'
+  77.8  19 | 2018-11-03T14:22:28+0000 [stdout#info] A query: b'www.google.com'
+  78.6  26 | c : DNS request from ('10.100.102.3', 45764) to None: 33 bytes
+  78.6  19 | 2018-11-03T14:22:28+0000 [stdout#info] A query: b'ssl.gstatic.com'
+  78.6  19 | 2018-11-03T14:22:29+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  78.7  26 | c : DNS request from ('10.100.102.3', 36047) to None: 35 bytes
+  78.7  26 | c : DNS request from ('10.100.102.3', 38148) to None: 32 bytes
+  78.7  19 | 2018-11-03T14:22:29+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  78.7  19 | 2018-11-03T14:22:29+0000 [stdout#info] A query: b'www.google.com'
+  78.7  19 | 2018-11-03T14:22:29+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  78.8  19 | 2018-11-03T14:22:29+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  78.9  19 | 2018-11-03T14:22:29+0000 [-] DNSDatagramProtocol starting on 24630
+  78.9  19 | 2018-11-03T14:22:29+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9303b38>
+  78.9  19 | 2018-11-03T14:22:29+0000 [-] (UDP Port 39104 Closed)
+  78.9  19 | 2018-11-03T14:22:29+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b92a77f0>
+  78.9  19 | 2018-11-03T14:22:29+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  79.0  19 | 2018-11-03T14:22:29+0000 [stdout#info] Failed to lookup b'mtalk.google.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  79.0  19 | 2018-11-03T14:22:29+0000 [stdout#info] ], falling back to b'mtalk.google.com.localdomain'
+  79.0  19 | 2018-11-03T14:22:29+0000 [-] DNSDatagramProtocol starting on 9102
+  79.0  19 | 2018-11-03T14:22:29+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b917d278>
+  79.0  19 | 2018-11-03T14:22:29+0000 [-] (UDP Port 37730 Closed)
+  79.0  19 | 2018-11-03T14:22:29+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b92a7ac8>
+  79.0  19 | 2018-11-03T14:22:29+0000 [-] DNSDatagramProtocol starting on 56746
+  79.0  19 | 2018-11-03T14:22:29+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b92a77f0>
+  79.0  19 | 2018-11-03T14:22:29+0000 [-] (UDP Port 5672 Closed)
+  79.0  19 | 2018-11-03T14:22:29+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9290b00>
+  79.0  19 | 2018-11-03T14:22:29+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  79.0  19 | 2018-11-03T14:22:29+0000 [stdout#info] Failed to lookup b'www.google.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  79.0  19 | 2018-11-03T14:22:29+0000 [stdout#info] ], falling back to b'www.google.com.localdomain'
+  79.6  26 | c : DNS request from ('10.100.102.3', 41064) to None: 26 bytes
+  79.6  26 | c : DNS request from ('10.100.102.3', 36850) to None: 27 bytes
+  79.6  26 | c : DNS request from ('10.100.102.3', 48837) to None: 33 bytes
+  79.6  19 | 2018-11-03T14:22:30+0000 [stdout#info] A query: b'wptyjfla'
+  79.6  19 | 2018-11-03T14:22:30+0000 [stdout#info] A query: b'wxxhenenf'
+  79.6  19 | 2018-11-03T14:22:30+0000 [stdout#info] A query: b'iemtxbcznnbhvvy'
+  79.7  19 | 2018-11-03T14:22:30+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  79.8  19 | 2018-11-03T14:22:30+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  79.8  19 | 2018-11-03T14:22:30+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  80.5  26 | c : Accept TCP: 10.100.102.3:53706 -> 172.30.248.186:443.
+  80.5  26 | c : Accept TCP: 10.100.102.3:53710 -> 172.30.248.186:443.
+  80.5  26 | c : Accept TCP: 10.100.102.3:53708 -> 172.30.248.186:443.
+  80.5  26 | c : Accept TCP: 10.100.102.3:53718 -> 172.30.248.186:443.
+  80.5  26 | c : SW#14:10.100.102.3:53532: deleting (23 remain)
+  80.5  26 | c : SW#14:10.100.102.3:53532: error was: uread: [Errno 104] Connection reset by peer
+  80.5  26 | c : SW'unknown':Mux#73: deleting (22 remain)
+  80.5  26 | c : SW#15:10.100.102.3:53540: deleting (21 remain)
+  80.5  26 | c : SW#15:10.100.102.3:53540: error was: uread: [Errno 104] Connection reset by peer
+  80.5  26 | c : SW'unknown':Mux#75: deleting (20 remain)
+  80.5  26 | c : SW'unknown':Mux#76: deleting (19 remain)
+  80.5  26 | c : SW#20:10.100.102.3:53544: deleting (18 remain)
+  80.5  26 | c : SW#20:10.100.102.3:53544: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  80.5  26 | c : Accept TCP: 10.100.102.3:53722 -> 172.30.248.186:443.
+  80.6  26 |  s: SW'unknown':Mux#76: deleting (15 remain)
+  80.6  26 |  s: SW#7:172.30.248.186:443: deleting (14 remain)
+  80.6  26 | c : Accept TCP: 10.100.102.3:53726 -> 172.30.248.186:443.
+  80.6  26 | c : SW#11:10.100.102.3:53706: uwrite: got EPIPE
+  80.6  26 | c : warning: closed channel 164 got cmd=TCP_EOF len=0
+  80.6  26 |  s: warning: closed channel 164 got cmd=TCP_STOP_SENDING len=0
+  80.6  26 | c : SW#16:10.100.102.3:53710: uwrite: got EPIPE
+  80.6  26 | c : warning: closed channel 165 got cmd=TCP_EOF len=0
+  80.6  26 | c : SW#17:10.100.102.3:53708: uwrite: got EPIPE
+  80.6  26 |  s: warning: closed channel 165 got cmd=TCP_STOP_SENDING len=0
+  80.6  26 | c : SW#11:10.100.102.3:53706: deleting (21 remain)
+  80.6  26 | c : SW#11:10.100.102.3:53706: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  80.6  26 | c : SW'unknown':Mux#164: deleting (20 remain)
+  80.6  26 | c : SW#16:10.100.102.3:53710: deleting (19 remain)
+  80.6  26 | c : SW#16:10.100.102.3:53710: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  80.6  26 | c : SW'unknown':Mux#165: deleting (18 remain)
+  80.6  26 | c : SW#17:10.100.102.3:53708: deleting (17 remain)
+  80.6  26 | c : SW#17:10.100.102.3:53708: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  80.6  26 | c : SW'unknown':Mux#166: deleting (16 remain)
+  80.6  26 | c : Accept TCP: 10.100.102.3:53730 -> 172.30.248.186:443.
+  80.7  26 | c : Accept TCP: 10.100.102.3:53732 -> 172.30.248.186:443.
+  80.7  26 | c : Accept TCP: 10.100.102.3:53734 -> 172.30.248.186:443.
+  80.7  26 | c : Accept TCP: 10.100.102.3:53736 -> 172.30.248.186:443.
+  80.7  26 | c : DNS request from ('10.100.102.3', 53714) to None: 45 bytes
+  80.7  19 | 2018-11-03T14:22:31+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  80.7  19 | 2018-11-03T14:22:31+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  80.8  19 | 2018-11-03T14:22:31+0000 [stdout#info] Failed to lookup b'www.youtube.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  80.8  19 | 2018-11-03T14:22:31+0000 [stdout#info] ], falling back to b'www.youtube.com.localdomain'
+  80.8  26 | c : SW#14:10.100.102.3:53722: uwrite: got EPIPE
+  80.8  26 | c : SW#19:10.100.102.3:53718: uwrite: got EPIPE
+  80.8  26 |  s: SW#14:172.30.248.186:443: deleting (23 remain)
+  80.8  26 |  s: SW'unknown':Mux#9: deleting (22 remain)
+  80.8  26 |  s: SW'unknown':Mux#10: deleting (21 remain)
+  80.8  26 |  s: SW#15:172.30.248.186:443: deleting (20 remain)
+  80.8  26 |  s: SW'unknown':Mux#168: deleting (19 remain)
+  80.8  26 |  s: SW'unknown':Mux#164: deleting (18 remain)
+  80.8  26 |  s: SW#28:172.30.248.186:443: deleting (17 remain)
+  80.8  26 |  s: SW'unknown':Mux#165: deleting (16 remain)
+  80.8  26 |  s: SW#32:172.30.248.186:443: deleting (15 remain)
+  80.8  26 |  s: SW'unknown':Mux#166: deleting (14 remain)
+  80.8  26 |  s: SW#36:172.30.248.186:443: deleting (13 remain)
+  80.8  26 |  s: SW'unknown':Mux#167: deleting (12 remain)
+  80.8  26 |  s: SW#38:172.30.248.186:443: deleting (11 remain)
+  80.8  26 |  s: SW#45:172.30.248.186:443: deleting (10 remain)
+  80.8  26 |  s: warning: closed channel 168 got cmd=TCP_STOP_SENDING len=0
+  80.8  26 | c : warning: closed channel 167 got cmd=TCP_EOF len=0
+  80.8  26 | c : warning: closed channel 168 got cmd=TCP_EOF len=0
+  80.8  19 | 2018-11-03T14:22:31+0000 [stdout#info] Updated query of type 1 from b'www.youtube.com.localdomain' to b'www.youtube.com'
+  80.8  19 | 2018-11-03T14:22:31+0000 [stdout#info] A query: b'www.youtube.com'
+  80.8  26 |  s: warning: closed channel 167 got cmd=TCP_STOP_SENDING len=0
+  81.1  26 | c : Accept TCP: 10.100.102.3:53748 -> 172.30.248.186:443.
+  81.2  26 | c : SW#10:10.100.102.3:53338: deleting (25 remain)
+  81.2  26 | c : SW#10:10.100.102.3:53338: error was: uread: [Errno 104] Connection reset by peer
+  81.2  26 | c : SW'unknown':Mux#23: deleting (24 remain)
+  81.2  26 | c : SW'unknown':Mux#66: deleting (23 remain)
+  81.2  26 | c : SW#13:10.100.102.3:53504: deleting (22 remain)
+  81.2  26 | c : SW#13:10.100.102.3:53504: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  81.2  26 | c : SW'unknown':Mux#69: deleting (21 remain)
+  81.2  26 | c : SW#8:10.100.102.3:53516: deleting (20 remain)
+  81.2  26 | c : SW#8:10.100.102.3:53516: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  81.2  26 | c : SW'unknown':Mux#167: deleting (19 remain)
+  81.2  26 | c : SW#19:10.100.102.3:53718: deleting (18 remain)
+  81.2  26 | c : SW#19:10.100.102.3:53718: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  81.2  26 | c : SW'unknown':Mux#168: deleting (17 remain)
+  81.2  26 | c : SW#14:10.100.102.3:53722: deleting (16 remain)
+  81.2  26 | c : SW#14:10.100.102.3:53722: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  81.2  26 | c : SW#15:10.100.102.3:53726: deleting (15 remain)
+  81.2  26 | c : SW#15:10.100.102.3:53726: error was: uread: [Errno 104] Connection reset by peer
+  81.2  26 | c : SW'unknown':Mux#169: deleting (14 remain)
+  81.3  26 | c : Accept TCP: 10.100.102.3:53752 -> 172.30.248.186:443.
+  81.3  26 |  s: SW'unknown':Mux#169: deleting (13 remain)
+  81.3  26 |  s: SW#7:172.30.248.186:443: deleting (12 remain)
+  81.3  26 | c : SW#11:10.100.102.3:53730: uwrite: got EPIPE
+  81.4  19 | 2018-11-03T14:22:31+0000 [-] DNSDatagramProtocol starting on 18233
+  81.4  19 | 2018-11-03T14:22:31+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9172358>
+  81.4  26 |  s: warning: closed channel 170 got cmd=TCP_STOP_SENDING len=0
+  81.4  26 | c : warning: closed channel 171 got cmd=TCP_DATA len=31
+  81.4  26 | c : warning: closed channel 170 got cmd=TCP_EOF len=0
+  81.5  19 | 2018-11-03T14:22:31+0000 [-] (UDP Port 28954 Closed)
+  81.5  19 | 2018-11-03T14:22:31+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9283fd0>
+  81.5  19 | 2018-11-03T14:22:31+0000 [-] DNSDatagramProtocol starting on 46700
+  81.5  19 | 2018-11-03T14:22:31+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b9283438>
+  81.6  19 | 2018-11-03T14:22:31+0000 [-] (UDP Port 38923 Closed)
+  81.6  19 | 2018-11-03T14:22:31+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916fbe0>
+  81.6  26 | c : DNS request from ('10.100.102.3', 44871) to None: 35 bytes
+  81.6  19 | 2018-11-03T14:22:31+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  81.6  19 | 2018-11-03T14:22:32+0000 [stdout#info] A query: b'beacons3.gvt2.com'
+  81.6  26 | c : DNS request from ('10.100.102.3', 41667) to None: 33 bytes
+  81.7  26 | c : SW#16:10.100.102.3:53732: deleting (15 remain)
+  81.7  26 | c : SW#16:10.100.102.3:53732: error was: uread: [Errno 104] Connection reset by peer
+  81.7  26 | c : SW'unknown':Mux#171: deleting (14 remain)
+  81.7  19 | 2018-11-03T14:22:32+0000 [stdout#info] A query: b'www.youtube.com'
+  81.7  26 | c : SW#11:10.100.102.3:53730: deleting (13 remain)
+  81.7  26 | c : SW#11:10.100.102.3:53730: error was: nowrite: [Errno 107] Transport endpoint is not connected
+  81.7  26 | c : SW'unknown':Mux#170: deleting (12 remain)
+  81.7  26 | c : SW#17:10.100.102.3:53734: uwrite: got EPIPE
+  81.7  26 | c : SW#20:10.100.102.3:53736: uwrite: got EPIPE
+  81.7  26 | c : DNS request from ('10.100.102.3', 39512) to None: 47 bytes
+  81.9  26 |  s: warning: closed channel 173 got cmd=TCP_STOP_SENDING len=0
+  81.9  19 | 2018-11-03T14:22:32+0000 [stdout#info] Updated query of type 1 from b'beacons3.gvt2.com.localdomain' to b'beacons3.gvt2.com'
+  81.9  19 | 2018-11-03T14:22:32+0000 [stdout#info] A query: b'beacons3.gvt2.com'
+  81.9  26 | c : warning: closed channel 173 got cmd=TCP_EOF len=0
+  82.0  19 | 2018-11-03T14:22:32+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  82.0  26 | c : DNS request from ('10.100.102.3', 58167) to None: 45 bytes
+  82.0  19 | 2018-11-03T14:22:32+0000 [stdout#info] Updated query of type 1 from b'www.youtube.com.localdomain' to b'www.youtube.com'
+  82.0  19 | 2018-11-03T14:22:32+0000 [stdout#info] A query: b'www.youtube.com'
+  82.1  26 | c : SW#8:10.100.102.3:53752: uwrite: got EPIPE
+  82.1  26 | c : warning: closed channel 176 got cmd=TCP_EOF len=0
+  82.1  26 |  s: warning: closed channel 176 got cmd=TCP_STOP_SENDING len=0
+  82.6  26 | c : DNS request from ('10.100.102.3', 41867) to None: 35 bytes
+  82.6  19 | 2018-11-03T14:22:32+0000 [stdout#info] A query: b'beacons3.gvt2.com'
+  82.7  19 | 2018-11-03T14:22:33+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  82.7  26 | c : DNS request from ('10.100.102.3', 57122) to None: 47 bytes
+  82.7  19 | 2018-11-03T14:22:33+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  82.7  19 | 2018-11-03T14:22:33+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  82.7  19 | 2018-11-03T14:22:33+0000 [stdout#info] Failed to lookup b'beacons2.gvt2.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  82.7  19 | 2018-11-03T14:22:33+0000 [stdout#info] ], falling back to b'beacons2.gvt2.com.localdomain'
+  82.7  19 | 2018-11-03T14:22:33+0000 [stdout#info] Updated query of type 1 from b'beacons2.gvt2.com.localdomain' to b'beacons2.gvt2.com'
+  82.7  19 | 2018-11-03T14:22:33+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  82.8  26 | c : DNS request from ('10.100.102.3', 46389) to None: 44 bytes
+  82.8  19 | 2018-11-03T14:22:33+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  82.8  19 | 2018-11-03T14:22:33+0000 [stdout#info] Failed to lookup b'www.google.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  82.8  19 | 2018-11-03T14:22:33+0000 [stdout#info] ], falling back to b'www.google.com.localdomain'
+  82.8  19 | 2018-11-03T14:22:33+0000 [stdout#info] Updated query of type 1 from b'www.google.com.localdomain' to b'www.google.com'
+  82.9  19 | 2018-11-03T14:22:33+0000 [stdout#info] A query: b'www.google.com'
+  83.0  19 | 2018-11-03T14:22:33+0000 [-] DNSDatagramProtocol starting on 26316
+  83.0  19 | 2018-11-03T14:22:33+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b919b278>
+  83.1  19 | 2018-11-03T14:22:33+0000 [-] (UDP Port 60254 Closed)
+  83.1  19 | 2018-11-03T14:22:33+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916f9e8>
+  83.1  19 | 2018-11-03T14:22:33+0000 [-] DNSDatagramProtocol starting on 36663
+  83.1  19 | 2018-11-03T14:22:33+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b916f9e8>
+  83.2  19 | 2018-11-03T14:22:33+0000 [-] (UDP Port 39528 Closed)
+  83.2  19 | 2018-11-03T14:22:33+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f20b933d0f0>
+  83.6  26 | c : DNS request from ('10.100.102.3', 45764) to None: 33 bytes
+  83.6  19 | 2018-11-03T14:22:33+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  83.6  26 | c : DNS request from ('10.100.102.3', 41454) to None: 45 bytes
+  83.6  19 | 2018-11-03T14:22:33+0000 [stdout#info] A query: b'ssl.gstatic.com'
+  83.6  19 | 2018-11-03T14:22:34+0000 [stdout#info] Updated query of type 1 from b'ssl.gstatic.com.localdomain' to b'ssl.gstatic.com'
+  83.6  19 | 2018-11-03T14:22:34+0000 [stdout#info] A query: b'ssl.gstatic.com'
+  83.7  26 | c : DNS request from ('10.100.102.3', 36047) to None: 35 bytes
+  83.7  26 | c : DNS request from ('10.100.102.3', 38148) to None: 32 bytes
+  83.7  19 | 2018-11-03T14:22:34+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  83.7  19 | 2018-11-03T14:22:34+0000 [stdout#info] A query: b'www.google.com'
+  83.7  19 | 2018-11-03T14:22:34+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  83.7  26 | c : DNS request from ('10.100.102.3', 58258) to None: 44 bytes
+  83.8  19 | 2018-11-03T14:22:34+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  83.8  19 | 2018-11-03T14:22:34+0000 [stdout#info] Updated query of type 1 from b'www.google.com.localdomain' to b'www.google.com'
+  83.8  19 | 2018-11-03T14:22:34+0000 [stdout#info] A query: b'www.google.com'
+  83.8  26 | c : DNS request from ('10.100.102.3', 43360) to None: 47 bytes
+  83.9  19 | 2018-11-03T14:22:34+0000 [stdout#info] Updated query of type 1 from b'beacons2.gvt2.com.localdomain' to b'beacons2.gvt2.com'
+  83.9  19 | 2018-11-03T14:22:34+0000 [stdout#info] A query: b'beacons2.gvt2.com'
+  84.6  26 | c : DNS request from ('10.100.102.3', 35906) to None: 33 bytes
+  84.6  19 | 2018-11-03T14:22:34+0000 [stdout#info] A query: b'ssl.gstatic.com'
+  84.6  19 | 2018-11-03T14:22:35+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  84.7  19 | 2018-11-03T14:22:35+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  84.7  19 | 2018-11-03T14:22:35+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  85.7  26 | c : DNS request from ('10.100.102.3', 47508) to None: 33 bytes
+  85.7  19 | 2018-11-03T14:22:36+0000 [stdout#info] A query: b'www.youtube.com'
+  85.9  19 | 2018-11-03T14:22:36+0000 [stdout#info] getaddrinfo error: [Errno -3] Try again
+  86.0  19 | 2018-11-03T14:22:36+0000 [stdout#info] Failed to lookup b'www.youtube.com' due to [Failure instance: Traceback (failure with no frames): <class 'twisted.names.error.DomainError'>: [Errno -3] Try again
+  86.0  19 | 2018-11-03T14:22:36+0000 [stdout#info] ], falling back to b'www.youtube.com.localdomain'
+  86.6  26 | Connection to localhost closed by remote host.
+  86.6  26 | >> iptables -t nat -D OUTPUT -j sshuttle-12300
+  86.6  26 | Another app is currently holding the xtables lock. Perhaps you want to use the -w option?
+  86.6  26 | error: ['iptables', '-t', 'nat', '-D', 'OUTPUT', '-j', 'sshuttle-12300'] returned 4
+  86.6  26 | >> iptables -t nat -D PREROUTING -j sshuttle-12300
+  86.6  26 | >> iptables -t nat -F sshuttle-12300
+  86.6  26 | >> iptables -t nat -X sshuttle-12300
+  86.6  26 | iptables: Too many links.
+  86.6  26 | firewall manager: Error trying to undo IPv4 firewall.
+  86.6  26 | firewall manager: ---> Traceback (most recent call last):
+  86.6  26 | firewall manager: --->   File "/home/dima/.pex/install/sshuttle_telepresence-0.78.2.dev45+gd250ccb-py2.py3-none-any.whl.73b9c6a0c49d6b6bf7533478d454b7be51b9d990/sshuttle_telepresence-0.78.2.dev45+gd250ccb-py2.py3-none-any.whl/sshuttle/firewall.py", line 262, in main
+  86.6  26 | firewall manager: --->     method.restore_firewall(port_v4, socket.AF_INET, udp)
+  86.6  26 | firewall manager: --->   File "/home/dima/.pex/install/sshuttle_telepresence-0.78.2.dev45+gd250ccb-py2.py3-none-any.whl.73b9c6a0c49d6b6bf7533478d454b7be51b9d990/sshuttle_telepresence-0.78.2.dev45+gd250ccb-py2.py3-none-any.whl/sshuttle/methods/nat.py", line 119, in restore_firewall
+  86.6  26 | firewall manager: --->     _ipt('-X', chain)
+  86.6  26 | firewall manager: --->   File "/home/dima/.pex/install/sshuttle_telepresence-0.78.2.dev45+gd250ccb-py2.py3-none-any.whl.73b9c6a0c49d6b6bf7533478d454b7be51b9d990/sshuttle_telepresence-0.78.2.dev45+gd250ccb-py2.py3-none-any.whl/sshuttle/methods/nat.py", line 107, in _ipt
+  86.6  26 | firewall manager: --->     return ipt(family, table, *args)
+  86.6  26 | firewall manager: --->   File "/home/dima/.pex/install/sshuttle_telepresence-0.78.2.dev45+gd250ccb-py2.py3-none-any.whl.73b9c6a0c49d6b6bf7533478d454b7be51b9d990/sshuttle_telepresence-0.78.2.dev45+gd250ccb-py2.py3-none-any.whl/sshuttle/linux.py", line 49, in ipt
+  86.6  26 | firewall manager: --->     raise Fatal('%r returned %d' % (argv, rv))
+  86.6  26 | firewall manager: ---> sshuttle.helpers.Fatal: ['iptables', '-t', 'nat', '-X', 'sshuttle-12300'] returned 1
+  86.6  26 | c : fatal: server died with error code 255
+  86.7  23 | Connection to localhost closed by remote host.
+  86.7 TEL | [23] exit 255
+  86.7 TEL | [26] exit 0
+  86.7 TEL | BackgroundProcess [23] SSH port forward (socks and proxy poll) is dead (exit code 255)
+  86.7 TEL | BackgroundProcess [26] sshuttle is dead (exit code 0)
+  86.7 >>> | Proxy to Kubernetes exited. This is typically due to a lost connection.
+  86.7 TEL | END SPAN __init__.py:530(wait_for_exit)   67.7s
+  86.7 >>> | Exiting...
+  86.7 TEL | EXITING with status code 3
+  86.7 >>> | Exit cleanup in progress
+  86.7 TEL | (Cleanup) Terminate local process
+  86.7 TEL | Killing local process...
+  86.7 TEL | (Cleanup) Unmount remote filesystem
+  86.7 TEL | [50] Running: fusermount -z -u /tmp/tel-zokm63ub/fs
+  86.7 TEL | (Cleanup) Delete new deployment
+  86.7 TEL | [51] Capturing: kubectl --context nemo/127-0-0-1:8443/system:admin --namespace nemo delete --ignore-not-found svc,deploy --selector=telepresence=5caaaf27e48c4168bf0939f799e0122a
+  86.9 TEL | (Cleanup) Kill background items
+  86.9 TEL | Killing BackgroundProcess [26] sshuttle
+  86.9 TEL | Killing BackgroundProcess [23] SSH port forward (socks and proxy poll)
+  86.9 TEL | Killing BackgroundThread Web server for proxy poll
+  87.1 TEL | Killing BackgroundProcess [20] kubectl port-forward
+  87.1 TEL | [20] exit -15
+  87.1 TEL | Killing BackgroundProcess [19] kubectl logs
+  87.1 TEL | [19] exit -15
+  87.1 TEL | Killing BackgroundThread sudo privileges holder
+  87.8 TEL | (sudo privileges holder thread exiting)
+  87.8 TEL | (Cleanup) Stop time tracking
+  87.8 TEL | END SPAN main.py:41(main)   87.8s
+  87.8 TEL | (Cleanup) Remove temporary directory
+  87.8 TEL | (Cleanup) Save caches
