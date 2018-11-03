@@ -5,9 +5,9 @@ metadata:
 spec:
   host: identity
   subsets:
-  - name: v2
+  - name: v0-5
     labels:
-      version: v2
+      version: v0-5
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -20,6 +20,5 @@ spec:
   - route:
     - destination:
         host: identity
-        subset: v2
-
+        subset: v0-5
 

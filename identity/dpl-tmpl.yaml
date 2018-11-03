@@ -3,7 +3,7 @@ kind: Template
 metadata:
   name: identity-service
   annotations:
-    description: "Nemo Identity services"
+    description: "Nemo Identity service"
 objects:
 - apiVersion: extensions/v1beta1
   kind: Deployment
@@ -19,7 +19,7 @@ objects:
       spec:
         containers:
         - name: identity
-          image: 172.30.1.1:5000/nemo/identity:0.4
+          image: 172.30.1.1:5000/nemo/identity:${IMAGE_TAG}
           env:
           - name: SPRING_PROFILES_ACTIVE
             value: prod
