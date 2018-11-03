@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: receiver
+spec:
+  host: receiver
+  subsets:
+  - name: v0-1
+    labels:
+      version: v0-1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: receiver
+spec:
+  hosts:
+    - receiver
+  http:
+  - route:
+    - destination:
+        host: receiver
+        subset: v0-1
+

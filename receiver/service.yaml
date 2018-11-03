@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: receiver
+  lables:
+    app: receiver
+spec:
+  selector:
+    app: receiver
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
