@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: feed
+  lables:
+    app: feed
+spec:
+  selector:
+    app: feed
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080

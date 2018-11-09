@@ -25,6 +25,14 @@ objects:
             value: prod
           ports:
           - containerPort: 8080
+          volumeMounts:
+          - mountPath: /app/public
+            name: test-volume
+        volumes:
+        - name: test-volume
+          hostPath:
+            path: /tmp
+            type: Directory
 parameters:
 - description: App version
   name: VERSION

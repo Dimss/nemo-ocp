@@ -27,3 +27,8 @@ oc adm policy add-scc-to-user anyuid -z istio-sidecar-injector-service-account -
 oc adm policy add-scc-to-user privileged -z istio-sidecar-injector-service-account -n istio-system
 oc adm policy add-scc-to-user anyuid -z istio-galley-service-account -n istio-system
 oc adm policy add-scc-to-user privileged -z default -n nemo
+oc apply -f istio.yaml
+sleep 3
+oc apply -f istio.yaml
+oc project nemo
+oc apply -f ../tel/i-deployment.yaml

@@ -4,7 +4,7 @@ items:
   kind: Deployment
   metadata:
     creationTimestamp: null
-    name: identity-v0-5
+    name: identity-v0-6
   spec:
     replicas: 1
     strategy: {}
@@ -15,13 +15,13 @@ items:
         creationTimestamp: null
         labels:
           app: identity
-          version: v0-5
+          version: v0-6
       spec:
         containers:
         - env:
           - name: SPRING_PROFILES_ACTIVE
             value: prod
-          image: 172.30.1.1:5000/nemo/identity:0.5
+          image: 172.30.1.1:5000/nemo/identity:0.6
           name: identity
           ports:
           - containerPort: 8080
@@ -73,7 +73,7 @@ items:
           - name: ISTIO_META_app
             value: identity
           - name: ISTIO_META_version
-            value: v0-5
+            value: v0-6
           image: docker.io/istio/proxyv2:1.0.3
           imagePullPolicy: IfNotPresent
           name: istio-proxy

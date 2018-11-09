@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: comments
+  lables:
+    app: comments
+spec:
+  selector:
+    app: comments
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
