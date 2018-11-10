@@ -27,6 +27,6 @@ spec:
     spec:
       containers:
       - name: pg
-        image: docker.io/postgres
+        image: 172.30.1.1:5000/nemo/postgres:latest
         ports:
         - containerPort: 5432
