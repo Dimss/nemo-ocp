@@ -11,6 +11,3 @@ spec:
   - name: http
     port: 80
     targetPort: 8080
-  # - name: debug
-  #   port: 8001
-  #   targetPort: 8001

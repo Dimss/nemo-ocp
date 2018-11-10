@@ -8,9 +8,6 @@ spec:
   - name: v0-10
     labels:
       version: v0-10
-  # - name: v0-10-d
-  #   labels:
-  #     version: v0-10-d
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -19,22 +16,11 @@ metadata:
 spec:
   hosts:
     - feed
-  # tcp:
-  # - match:
-  #   - port: 8001
-  #   route:
-  #   - destination:
-  #       host: feed
-  #       subset: v0-10-d
   http:
   - route:
     - destination:
         host: feed
         subset: v0-10
-      weight: 100
-    # mirror:
-    #   host: feed
-    #   subset: v0-10-d
     corsPolicy:
       allowOrigin:
         - "*"
