@@ -19,7 +19,7 @@ objects:
       spec:
         containers:
         - name: links
-          image: 172.30.1.1:5000/nemo/nemo-links:${IMAGE_TAG}
+          image: 172.30.1.1:5000/nemo/links:${IMAGE_TAG}
           env:
           - name: PROFILE
             value: PROD

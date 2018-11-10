@@ -35,7 +35,7 @@ cd likes
 sleep 3
 ./deploy.sh 0.10
 cd ../
-echo -e "${GREEN}Deploying Likes service. . .${NC}"
+echo -e "${GREEN}Likes service deployed!${NC}"
 
 ### Deploy identity service
 echo -e "${GREEN}Deploying Identity service. . .${NC}"
