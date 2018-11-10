@@ -5,9 +5,9 @@ metadata:
 spec:
   host: receiver
   subsets:
-  - name: v0-6
+  - name: v0-10
     labels:
-      version: v0-6
+      version: v0-10
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -20,7 +20,7 @@ spec:
   - route:
     - destination:
         host: receiver
-        subset: v0-6
+        subset: v0-10
     corsPolicy:
       allowOrigin:
         - "*"
