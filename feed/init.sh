@@ -1,5 +1,5 @@
-oc create -f service.yaml
-oc create -f rule.yaml
+oc apply -f service.yaml
+istioctl create -f rule.yaml
 
 oc get services
 oc get destinationrules

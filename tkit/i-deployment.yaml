@@ -21,7 +21,7 @@ spec:
       - command:
         - /bin/bash
         - -c
-        - sleep 3600
+        - sleep 7200
         image: 172.30.1.1:5000/nemo/tkit:latest
         name: tkit
         resources: {}

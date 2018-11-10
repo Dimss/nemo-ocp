@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: feed-debug
+  lables:
+    debug: v0-10-d
+spec:
+  selector:
+    debug: v0-10-d
+  ports:
+  - name: debug
+    port: 8001
+    targetPort: 8001
