@@ -1,0 +1,1 @@
+mount | grep /home/dima/okd-storage | awk '{print $3}' | xargs umount
