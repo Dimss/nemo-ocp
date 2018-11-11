@@ -1,4 +1,3 @@
-oc create -f pg.yaml
 oc create -f service.yaml
 oc create -f rule.yaml
 

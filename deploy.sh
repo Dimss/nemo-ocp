@@ -10,6 +10,21 @@ sleep 10
 cd ../
 echo -e "${GREEN}Init cluster done!${NC}"
 
+### Deploy data services
+echo -e "${GREEN}Deploy data services...${NC}"
+cd identity
+oc create -f pg.yaml
+cd ../links
+oc create -f mongo.yaml
+cd ../likes
+oc create -f mongo.yaml
+cd ../comments
+oc craete -f mongo.yaml
+cd ../
+sleep 10
+echo -e "${GREEN}Data services deployed!${NC}"
+
+
 ### Deploy links service
 echo -e "${GREEN}Deploying links service . . .${NC}"
 cd links
@@ -69,7 +84,7 @@ echo -e "${GREEN}Deploying Kiali service. . .${NC}"
 cd kiali
 ./init.sh
 sleep 5
-./deploy.sh 0.10
 cd ../
 echo -e "${GREEN}Feed service deployed!${NC}"
-echo -e "${CYAN}PHOTOGRAM APPLICATION HAS BEEN SUCCESSFULLY DEPLOYED!${NC}"
+
+echo -e "${CYAN}*** PHOTOGRAM APPLICATION HAS BEEN SUCCESSFULLY DEPLOYED! ***${NC}"
