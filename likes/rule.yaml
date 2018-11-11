@@ -33,7 +33,7 @@ spec:
     - destination:
         host: likes
         subset: v0-10
-    fault:
-      delay:
-        fixedDelay: 1ms
-        percent: 100
+    # fault:
+    #   delay:
+    #     fixedDelay: 1s
+    #     percent: 100

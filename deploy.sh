@@ -63,4 +63,13 @@ sleep 5
 ./deploy.sh 0.10
 cd ../
 echo -e "${GREEN}Feed service deployed!${NC}"
+
+### Deploy Kiali
+echo -e "${GREEN}Deploying Kiali service. . .${NC}"
+cd kiali
+./init.sh
+sleep 5
+./deploy.sh 0.10
+cd ../
+echo -e "${GREEN}Feed service deployed!${NC}"
 echo -e "${CYAN}PHOTOGRAM APPLICATION HAS BEEN SUCCESSFULLY DEPLOYED!${NC}"
