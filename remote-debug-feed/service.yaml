@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: feed-debug
+  lables:
+    app: feed
+spec:
+  selector:
+    debug: feed-debug
+  ports:
+  - name: http
+    port: 8080
+  - name: debug
+    port: 5005

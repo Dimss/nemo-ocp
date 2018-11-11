@@ -2,13 +2,6 @@
 GREEN='\033[1;32m'
 CYAN='\e[01;96m'
 NC='\033[0m' 
-### Init cluster
-echo -e "${GREEN}Init cluster...${NC}"
-cd cluster-init
-./init.sh
-sleep 10
-cd ../
-echo -e "${GREEN}Init cluster done!${NC}"
 
 ### Deploy data services
 echo -e "${GREEN}Deploy data services...${NC}"
@@ -19,7 +12,7 @@ oc create -f mongo.yaml
 cd ../likes
 oc create -f mongo.yaml
 cd ../comments
-oc craete -f mongo.yaml
+oc create -f mongo.yaml
 cd ../
 sleep 10
 echo -e "${GREEN}Data services deployed!${NC}"

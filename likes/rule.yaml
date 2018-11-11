@@ -4,18 +4,6 @@ metadata:
   name: likes
 spec:
   host: likes
-  # trafficPolicy:
-  #   connectionPool:
-  #     http:
-  #       http1MaxPendingRequests: 1
-  #       maxRequestsPerConnection: 1
-  #     tcp:
-  #       maxConnections: 1
-  #   outlierDetection:
-  #     consecutiveErrors: 1
-  #     interval: 1s
-  #     baseEjectionTime: 3m
-  #     maxEjectionPercent: 50
   subsets:
   - name: v0-10
     labels:
@@ -35,5 +23,5 @@ spec:
         subset: v0-10
     # fault:
     #   delay:
-    #     fixedDelay: 1s
+    #     fixedDelay: 10s
     #     percent: 100
