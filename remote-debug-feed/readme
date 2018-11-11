@@ -1,0 +1,4 @@
+#		 STOP TELEPRESENCE
+# create debug service: 	oc create -f service.yaml
+# create deployment:    	./deploy 0.10
+# update rule:			istioctl delete -f rule.yaml && istioctl create -f rule.yaml

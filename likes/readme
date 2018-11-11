@@ -1,0 +1,1 @@
+istioctl delete -f rule.yaml && istioctl create -f rule.yaml
